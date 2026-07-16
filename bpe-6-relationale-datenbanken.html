@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BPE 6 · Relationale Datenbanken – Lehrbuch</title>
+<link rel="icon" type="image/png" href="assets/lehrbuch-favicon.png?v=2.4.1">
+<link rel="apple-touch-icon" href="assets/lehrbuch-apple-touch.png?v=2.4.1">
+<link rel="stylesheet" href="assets/style.css?v=2.4.1">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/lehrbuch-favicon.png" alt="" width="28" height="28"><span>Lehrbuch</span></a>
+    <a class="lab-ruecklink" href="../PythonLab/index.html#workbook">← PythonLab</a>
+    <a href="index.html">Start</a>
+    <a href="inhaltsverzeichnis.html">Inhalt</a>
+    <a href="kapitel-1-kara.html">BPE5 K1</a>
+    <a href="kapitel-2-python-grundlagen.html">BPE5 K2</a>
+    <a href="kapitel-3-kontrollstrukturen.html">BPE5 K3</a>
+    <a href="bpe-6-relationale-datenbanken.html" class="aktiv">BPE6 DB</a>
+    <a href="kapitel-4-arrays.html">BPE7 K4</a>
+    <a href="kapitel-5-sortieren-suchen.html">BPE7 K5</a>
+    <a href="kapitel-6-datenstrukturen.html">BPE7 K6</a>
+    <a href="bpe-8-gesellschaftliche-aspekte.html">BPE8</a>
+    <a href="glossar.html">Glossar</a>
+    <a href="referenz.html">Spickzettel</a>
+    <a href="checklisten.html">Checklisten</a>
+  </div>
+</nav>
+
+<header class="seitenkopf">
+  <div class="kopf-inner">
+    <p class="dachzeile">Jahrgangsstufe 1 · BPE 6 · 30 Stunden</p>
+    <h1>Relationale Datenbanken – Daten mit System</h1>
+    <p class="untertitel">
+      Eine Schulbibliothek kennt Bücher, Personen und Ausleihen. Doch wie werden
+      diese Daten so gespeichert, dass nichts durcheinandergerät? Sie entwickeln
+      Schritt für Schritt ein Datenmodell und bringen es mit SQL in MySQL Workbench
+      zum Leben.
+    </p>
+  </div>
+</header>
+
+<main>
+
+<div class="kapitel-toc">
+  <strong>In dieser Bildungsplaneinheit:</strong>
+  <ol>
+    <li><a href="#datenbank">Warum eine Datenbank?</a></li>
+    <li><a href="#ermodell">BPE 6.1: Entity-Relationship-Modell</a></li>
+    <li><a href="#relationenmodell">BPE 6.2: Vom ER-Modell zu Relationen</a></li>
+    <li><a href="#normalisierung">Redundanz und 3. Normalform</a></li>
+    <li><a href="#aufbau">BPE 6.3: Datenbank mit CREATE und INSERT</a></li>
+    <li><a href="#auswerten">BPE 6.4: Daten mit SELECT auswerten</a></li>
+    <li><a href="#massendaten">BPE 6.5: Chancen und Risiken von Massendaten</a></li>
+    <li><a href="#uebungen">Übungsaufgaben</a></li>
+  </ol>
+</div>
+
+<div class="box box-ziel">
+  <span class="box-titel">Das können Sie nach BPE 6</span>
+  <ul>
+    <li>Situationen der realen Welt als ER-Modell darstellen,</li>
+    <li>Entitäten, Attribute, Beziehungen und Kardinalitäten sicher unterscheiden,</li>
+    <li>aus einem ER-Modell ein Relationenmodell mit Primär- und Fremdschlüsseln ableiten,</li>
+    <li>Redundanz erkennen und Tabellen bis zur 3. Normalform strukturieren,</li>
+    <li>Tabellen mit SQL anlegen, Datensätze einfügen und konsistent halten,</li>
+    <li>Daten aus mehreren Tabellen filtern, sortieren, gruppieren und auswerten,</li>
+    <li>Chancen und Risiken personalisierter Massendaten begründet beurteilen.</li>
+  </ul>
+</div>
+
+<div class="db-weg" aria-label="Lernweg durch BPE 6">
+  <div class="db-schritt"><strong>1 · Analysieren</strong><span>Welche Dinge und Zusammenhänge gibt es?</span></div>
+  <div class="db-schritt"><strong>2 · Modellieren</strong><span>ER-Modell und Kardinalitäten entwerfen</span></div>
+  <div class="db-schritt"><strong>3 · Strukturieren</strong><span>Relationen, Schlüssel und Normalformen festlegen</span></div>
+  <div class="db-schritt"><strong>4 · Umsetzen</strong><span>Tabellen erstellen und Daten erfassen</span></div>
+  <div class="db-schritt"><strong>5 · Auswerten</strong><span>Mit SQL Fragen an die Daten stellen</span></div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="datenbank"><span class="knr">6.0</span>Warum eine Datenbank?</h2>
+
+<p>
+  Eine Tabelle reicht für eine kleine Namensliste. In einer Schulbibliothek hängen
+  jedoch verschiedene Dinge zusammen: Eine Person kann mehrere Bücher ausleihen,
+  ein Buch kann im Laufe der Zeit von verschiedenen Personen ausgeliehen werden,
+  und jede Ausleihe besitzt ein eigenes Datum. Würde alles in einer einzigen
+  Tabelle stehen, müssten Namen und Buchtitel ständig wiederholt werden.
+</p>
+
+<div class="vergleich">
+  <div class="box box-info">
+    <span class="box-titel">Tabellenkalkulation</span>
+    <p>Gut für Berechnungen, einzelne Listen und schnelle Diagramme.</p>
+    <p><strong>Grenze:</strong> Zusammenhängende Daten werden leicht doppelt oder widersprüchlich.</p>
+  </div>
+  <div class="box box-tipp">
+    <span class="box-titel">Relationale Datenbank</span>
+    <p>Gut für viele verknüpfte Datensätze, eindeutige Regeln und wiederkehrende Auswertungen.</p>
+    <p><strong>Stärke:</strong> Beziehungen werden über Schlüssel zuverlässig abgebildet.</p>
+  </div>
+</div>
+
+<div class="box box-merke">
+  <span class="box-titel">Merke: Datenbank</span>
+  <p>
+    Eine <strong>Datenbank</strong> ist eine strukturierte Sammlung zusammengehöriger
+    Daten. Ein <strong>Datenbankmanagementsystem</strong> wie MySQL speichert diese
+    Daten, prüft Regeln und beantwortet Abfragen.
+  </p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="ermodell"><span class="knr">6.1</span>Die reale Welt als ER-Modell</h2>
+
+<p>
+  Bevor Tabellen angelegt werden, wird die Situation vereinfacht. Das
+  <strong>Entity-Relationship-Modell</strong>, kurz ER-Modell, zeigt die wichtigen
+  Objekte, ihre Eigenschaften und ihre Beziehungen. Es ist der Bauplan der Datenbank.
+</p>
+
+<table class="tab">
+  <tr><th>Begriff</th><th>Bedeutung</th><th>Beispiel Schulbibliothek</th></tr>
+  <tr><td><strong>Entität</strong></td><td>Ein einzelnes, unterscheidbares Objekt.</td><td>die Person Mia Sommer</td></tr>
+  <tr><td><strong>Entitätstyp</strong></td><td>Gruppe gleichartiger Entitäten.</td><td>PERSON</td></tr>
+  <tr><td><strong>Attribut</strong></td><td>Eigenschaft eines Entitätstyps.</td><td>name, klasse</td></tr>
+  <tr><td><strong>Beziehung</strong></td><td>Verknüpfung zwischen Entitätstypen.</td><td>PERSON leiht BUCH aus</td></tr>
+  <tr><td><strong>Kardinalität</strong></td><td>Wie viele Entitäten miteinander verbunden sein dürfen.</td><td>n:m</td></tr>
+</table>
+
+<h3>Ein erstes Modell</h3>
+
+<div class="er-modell" role="img" aria-label="ER-Modell: Personen leihen Bücher aus, Kardinalität n zu m">
+  <div class="er-entitaet">
+    <h4>PERSON</h4>
+    <ul><li><u>person_id</u></li><li>name</li><li>klasse</li></ul>
+  </div>
+  <div class="er-beziehung">leiht aus<span class="er-kardinalitaet">n : m</span></div>
+  <div class="er-entitaet">
+    <h4>BUCH</h4>
+    <ul><li><u>buch_id</u></li><li>titel</li><li>autor</li></ul>
+  </div>
+</div>
+
+<p>
+  Eine Person kann im Laufe der Zeit viele Bücher ausleihen. Ein Buch kann ebenfalls
+  nacheinander von vielen Personen ausgeliehen werden. Deshalb ist dies eine
+  <strong>n:m-Beziehung</strong>. Das Ausleihdatum gehört nicht zu Person oder Buch,
+  sondern zur Beziehung selbst.
+</p>
+
+<table class="tab">
+  <tr><th>Kardinalität</th><th>Lesart</th><th>Beispiel</th></tr>
+  <tr><td><strong>1:1</strong></td><td>Genau ein Objekt gehört zu genau einem anderen.</td><td>Fahrzeug - Fahrgestellnummer</td></tr>
+  <tr><td><strong>1:n</strong></td><td>Ein Objekt kann mit vielen anderen verbunden sein.</td><td>Klasse - Schülerinnen und Schüler</td></tr>
+  <tr><td><strong>n:m</strong></td><td>Auf beiden Seiten sind viele Verbindungen möglich.</td><td>Person - Buch</td></tr>
+</table>
+
+<div class="quiz" data-erklaerung="Ein Kurs kann viele Lernende enthalten und ein Lernender kann mehrere Kurse besuchen.">
+  <span class="quiz-titel">Kurzcheck</span>
+  <p class="quiz-frage">Welche Kardinalität passt zwischen LERNENDE und KURS?</p>
+  <button class="antwort">1:1</button>
+  <button class="antwort">1:n</button>
+  <button class="antwort" data-richtig>n:m</button>
+  <p class="quiz-feedback"></p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="relationenmodell"><span class="knr">6.2</span>Vom ER-Modell zum Relationenmodell</h2>
+
+<p>
+  Im Relationenmodell wird jeder Entitätstyp zu einer <strong>Relation</strong>, die
+  später als Tabelle umgesetzt wird. Die n:m-Beziehung erhält eine eigene Relation
+  <strong>AUSLEIHE</strong>. So wird aus dem Bild ein präziser Tabellenplan.
+</p>
+
+<div class="schema-grid" aria-label="Relationenmodell der Schulbibliothek">
+  <div class="schema-card">
+    <h4>PERSON</h4>
+    <div class="schema-zeile"><span class="schluessel pk">PK</span><code>person_id</code><span class="schema-typ">INT</span></div>
+    <div class="schema-zeile"><span class="schluessel neutral">-</span><code>name</code><span class="schema-typ">VARCHAR</span></div>
+    <div class="schema-zeile"><span class="schluessel neutral">-</span><code>klasse</code><span class="schema-typ">VARCHAR</span></div>
+  </div>
+  <div class="schema-card">
+    <h4>AUSLEIHE</h4>
+    <div class="schema-zeile"><span class="schluessel pk">PK</span><code>ausleihe_id</code><span class="schema-typ">INT</span></div>
+    <div class="schema-zeile"><span class="schluessel fk">FK</span><code>person_id</code><span class="schema-typ">INT</span></div>
+    <div class="schema-zeile"><span class="schluessel fk">FK</span><code>buch_id</code><span class="schema-typ">INT</span></div>
+    <div class="schema-zeile"><span class="schluessel neutral">-</span><code>ausleihdatum</code><span class="schema-typ">DATE</span></div>
+    <div class="schema-zeile"><span class="schluessel neutral">-</span><code>rueckgabedatum</code><span class="schema-typ">DATE</span></div>
+  </div>
+  <div class="schema-card">
+    <h4>BUCH</h4>
+    <div class="schema-zeile"><span class="schluessel pk">PK</span><code>buch_id</code><span class="schema-typ">INT</span></div>
+    <div class="schema-zeile"><span class="schluessel neutral">-</span><code>titel</code><span class="schema-typ">VARCHAR</span></div>
+    <div class="schema-zeile"><span class="schluessel neutral">-</span><code>autor</code><span class="schema-typ">VARCHAR</span></div>
+  </div>
+</div>
+
+<div class="vergleich">
+  <div class="box box-merke">
+    <span class="box-titel">Primärschlüssel (PK)</span>
+    <p>Identifiziert jeden Datensatz einer Tabelle eindeutig. Zwei Personen dürfen denselben Namen, aber niemals dieselbe <code>person_id</code> besitzen.</p>
+  </div>
+  <div class="box box-tipp">
+    <span class="box-titel">Fremdschlüssel (FK)</span>
+    <p>Verweist auf den Primärschlüssel einer anderen Tabelle. <code>AUSLEIHE.person_id</code> zeigt auf <code>PERSON.person_id</code>.</p>
+  </div>
+</div>
+
+<h3>Geeignete Datentypen</h3>
+
+<table class="tab">
+  <tr><th>Art der Daten</th><th>MySQL-Datentyp</th><th>Beispiel</th></tr>
+  <tr><td>Text</td><td><code>VARCHAR(100)</code> oder <code>TEXT</code></td><td>Buchtitel</td></tr>
+  <tr><td>Ganzzahl</td><td><code>INT</code></td><td>Anzahl Exemplare</td></tr>
+  <tr><td>Fließkommazahl</td><td><code>DECIMAL(6,2)</code></td><td>Preis 19.95</td></tr>
+  <tr><td>Datum</td><td><code>DATE</code></td><td>2026-09-14</td></tr>
+  <tr><td>Wahrheitswert</td><td><code>BOOLEAN</code></td><td>verfügbar / nicht verfügbar</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="normalisierung"><span class="knr">6.2+</span>Redundanz und 3. Normalform</h2>
+
+<p>
+  <strong>Redundanz</strong> bedeutet, dass dieselbe Information unnötig mehrfach
+  gespeichert wird. In einer großen Ausleihtabelle würde Mias Name bei jeder Ausleihe
+  erneut stehen. Ändert sich der Name, müssten viele Zeilen angepasst werden. Wird eine
+  Zeile vergessen, widerspricht die Datenbank sich selbst.
+</p>
+
+<table class="tab">
+  <tr><th>ausleihe_id</th><th>person_name</th><th>klasse</th><th>buch_titel</th></tr>
+  <tr><td>501</td><td>Mia Sommer</td><td>J1/1</td><td>Python verstehen</td></tr>
+  <tr><td>502</td><td>Mia Sommer</td><td>J1/1</td><td>Datenbanken kompakt</td></tr>
+  <tr><td>503</td><td>Mia Sommer</td><td>J1/1</td><td>Algorithmen entdecken</td></tr>
+</table>
+
+<div class="normalform-weg">
+  <div><strong>1. Normalform</strong><span>Jede Zelle enthält genau einen Wert, keine Listen oder Wiederholungsgruppen.</span></div>
+  <div><strong>2. Normalform</strong><span>Jedes Nichtschlüsselattribut hängt vom gesamten Primärschlüssel ab.</span></div>
+  <div><strong>3. Normalform</strong><span>Nichtschlüsselattribute hängen nur vom Primärschlüssel ab, nicht voneinander.</span></div>
+</div>
+
+<div class="box box-achtung">
+  <span class="box-titel">Typische Anomalien</span>
+  <ul>
+    <li><strong>Änderungsanomalie:</strong> Eine Information muss an vielen Stellen geändert werden.</li>
+    <li><strong>Einfügeanomalie:</strong> Ein Buch kann erst gespeichert werden, wenn bereits eine Ausleihe existiert.</li>
+    <li><strong>Löschanomalie:</strong> Mit der letzten Ausleihe verschwinden versehentlich auch die Buchdaten.</li>
+  </ul>
+</div>
+
+<div class="box box-merke">
+  <span class="box-titel">Prüffrage für die 3. Normalform</span>
+  <p>
+    Beschreibt jedes Attribut wirklich das Objekt dieser Tabelle? Wenn ein Attribut
+    eigentlich zu einem anderen Objekt gehört, braucht es meist eine eigene Tabelle
+    und einen Fremdschlüssel.
+  </p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="aufbau"><span class="knr">6.3</span>Die Datenbank mit SQL aufbauen</h2>
+
+<p>
+  In MySQL Workbench wird das Modell mit <strong>SQL</strong> umgesetzt. SQL steht für
+  Structured Query Language. Ein neues Skript wird geöffnet, ausgeführt und das
+  Ergebnis anschließend im Schema-Bereich kontrolliert.
+</p>
+
+<h3>Tabellen erstellen</h3>
+
+<pre class="code" data-lang="sql">CREATE TABLE person (
+  person_id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  klasse VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE buch (
+  buch_id INT PRIMARY KEY,
+  titel VARCHAR(150) NOT NULL,
+  autor VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE ausleihe (
+  ausleihe_id INT PRIMARY KEY,
+  person_id INT NOT NULL,
+  buch_id INT NOT NULL,
+  ausleihdatum DATE NOT NULL,
+  rueckgabedatum DATE,
+  FOREIGN KEY (person_id) REFERENCES person(person_id),
+  FOREIGN KEY (buch_id) REFERENCES buch(buch_id)
+);</pre>
+
+<h3>Datensätze einfügen</h3>
+
+<pre class="code" data-lang="sql">INSERT INTO person (person_id, name, klasse)
+VALUES (1, 'Mia Sommer', 'J1/1');
+
+INSERT INTO buch (buch_id, titel, autor)
+VALUES (10, 'Python verstehen', 'Lena Code');
+
+INSERT INTO ausleihe
+  (ausleihe_id, person_id, buch_id, ausleihdatum)
+VALUES
+  (501, 1, 10, '2026-09-14');</pre>
+
+<div class="vergleich">
+  <div class="box box-info">
+    <span class="box-titel">Datenkonsistenz</span>
+    <p>Die gespeicherten Daten erfüllen die vereinbarten Regeln und widersprechen sich nicht.</p>
+  </div>
+  <div class="box box-tipp">
+    <span class="box-titel">Referentielle Integrität</span>
+    <p>Ein Fremdschlüssel darf nur auf einen tatsächlich vorhandenen Datensatz zeigen. Eine Ausleihe für <code>person_id = 99</code> wird abgelehnt, wenn Person 99 nicht existiert.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="auswerten"><span class="knr">6.4</span>Fragen mit SELECT beantworten</h2>
+
+<h3>Auswählen, filtern und sortieren</h3>
+
+<pre class="code" data-lang="sql">SELECT titel, autor
+FROM buch
+WHERE autor = 'Lena Code'
+ORDER BY titel ASC;</pre>
+
+<p>
+  Die Reihenfolge hilft beim Lesen: <strong>Was</strong> soll erscheinen?
+  <strong>Woher</strong> kommen die Daten? <strong>Welche</strong> Zeilen werden
+  ausgewählt? <strong>Wie</strong> wird sortiert?
+</p>
+
+<table class="tab">
+  <tr><th>Baustein</th><th>Aufgabe</th><th>Beispiel</th></tr>
+  <tr><td><code>SELECT</code></td><td>Spalten auswählen</td><td><code>SELECT titel, autor</code></td></tr>
+  <tr><td><code>FROM</code></td><td>Tabelle festlegen</td><td><code>FROM buch</code></td></tr>
+  <tr><td><code>WHERE</code></td><td>Zeilen filtern</td><td><code>WHERE buch_id &gt; 10</code></td></tr>
+  <tr><td><code>AND / OR / NOT</code></td><td>Bedingungen verknüpfen</td><td><code>WHERE klasse = 'J1/1' OR klasse = 'J1/2'</code></td></tr>
+  <tr><td><code>ORDER BY</code></td><td>Ergebnis sortieren</td><td><code>ORDER BY name ASC</code></td></tr>
+</table>
+
+<h3>Daten aus mehreren Tabellen verbinden</h3>
+
+<pre class="code" data-lang="sql">SELECT person.name, buch.titel, ausleihe.ausleihdatum
+FROM ausleihe
+INNER JOIN person
+  ON ausleihe.person_id = person.person_id
+INNER JOIN buch
+  ON ausleihe.buch_id = buch.buch_id
+WHERE ausleihe.rueckgabedatum IS NULL
+ORDER BY person.name;</pre>
+
+<div class="box box-merke">
+  <span class="box-titel">Merke: JOIN</span>
+  <p>
+    Ein <code>JOIN</code> verbindet passende Datensätze über Primär- und
+    Fremdschlüssel. Ohne die <code>ON</code>-Bedingung würden alle Personen mit allen
+    Büchern kombiniert. Das Ergebnis wäre fachlich falsch und sehr groß.
+  </p>
+</div>
+
+<h3>Gruppieren und rechnen</h3>
+
+<pre class="code" data-lang="sql">SELECT person.klasse,
+       COUNT(*) AS anzahl_ausleihen
+FROM ausleihe
+INNER JOIN person
+  ON ausleihe.person_id = person.person_id
+WHERE YEAR(ausleihe.ausleihdatum) = 2026
+GROUP BY person.klasse
+ORDER BY anzahl_ausleihen DESC;</pre>
+
+<table class="tab">
+  <tr><th>Funktion</th><th>Bedeutung</th></tr>
+  <tr><td><code>COUNT()</code></td><td>Anzahl der Datensätze</td></tr>
+  <tr><td><code>SUM()</code></td><td>Summe numerischer Werte</td></tr>
+  <tr><td><code>AVG()</code></td><td>Durchschnitt</td></tr>
+  <tr><td><code>MIN()</code> / <code>MAX()</code></td><td>Kleinster bzw. größter Wert</td></tr>
+  <tr><td><code>MONTH()</code> / <code>YEAR()</code></td><td>Monat bzw. Jahr aus einem Datum</td></tr>
+  <tr><td><code>GROUP BY</code></td><td>Datensätze mit gleichem Merkmal zusammenfassen</td></tr>
+</table>
+
+<div class="quiz" data-erklaerung="WHERE filtert einzelne Datensätze vor der Gruppierung; HAVING filtert bereits gebildete Gruppen.">
+  <span class="quiz-titel">Kurzcheck</span>
+  <p class="quiz-frage">Welcher Baustein filtert einzelne Zeilen vor einer Gruppierung?</p>
+  <button class="antwort" data-richtig>WHERE</button>
+  <button class="antwort">GROUP BY</button>
+  <button class="antwort">ORDER BY</button>
+  <p class="quiz-feedback"></p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="massendaten"><span class="knr">6.5</span>Massendaten: erkennen, aber verantwortlich handeln</h2>
+
+<p>
+  Viele einzelne Datensätze können Muster sichtbar machen. Bewegungsdaten zeigen
+  beispielsweise Verkehrsströme, Besucherzahlen oder gefährliche Schulwege. Dieselben
+  Daten können jedoch auch Personen überwachen oder falsche Schlüsse nahelegen.
+</p>
+
+<div class="daten-ampel">
+  <div><strong>Chance</strong><span>Zusammenhänge erkennen, Angebote verbessern, Ressourcen sinnvoll planen.</span></div>
+  <div><strong>Prüfen</strong><span>Ist die Datenbasis vollständig? Ist ein Zusammenhang wirklich eine Ursache?</span></div>
+  <div><strong>Risiko</strong><span>Überwachung, Diskriminierung, Datenmissbrauch und Entscheidungen ohne Kontext.</span></div>
+</div>
+
+<div class="box box-achtung">
+  <span class="box-titel">Korrelation ist nicht automatisch Ursache</span>
+  <p>
+    Zwei Merkmale können gemeinsam auftreten, ohne dass eines das andere verursacht.
+    Eine Datenbank liefert Muster. Die fachliche Erklärung und eine faire Bewertung
+    brauchen zusätzlich Kontext.
+  </p>
+</div>
+
+<h3>Fünf Fragen für eine begründete Bewertung</h3>
+
+<ol>
+  <li><strong>Zweck:</strong> Welches konkrete Problem soll gelöst werden?</li>
+  <li><strong>Datensparsamkeit:</strong> Welche Daten sind dafür wirklich notwendig?</li>
+  <li><strong>Transparenz:</strong> Wissen Betroffene, was gespeichert und ausgewertet wird?</li>
+  <li><strong>Qualität:</strong> Sind Daten vollständig, aktuell und frei von systematischen Verzerrungen?</li>
+  <li><strong>Folgen:</strong> Wer profitiert, wer trägt ein Risiko und wer kann widersprechen?</li>
+</ol>
+
+<!-- ============================================================ -->
+<h2 id="uebungen"><span class="knr">6.6</span>Übungsaufgaben</h2>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 1 · Entitäten oder Attribute?</span><span class="schwierigkeit">Einstieg</span></div>
+  <div class="uebung-inhalt">
+    <p>Ordnen Sie für eine Schulmensa ein: <em>BESTELLUNG, preis, SCHÜLER, bestelldatum, name, GERICHT</em>.</p>
+    <p>Welche Begriffe sind Entitätstypen, welche sind Attribute?</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p><strong>Entitätstypen:</strong> BESTELLUNG, SCHÜLER, GERICHT.</p>
+    <p><strong>Attribute:</strong> preis gehört zu GERICHT, bestelldatum zu BESTELLUNG, name zu SCHÜLER.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 2 · Kardinalitäten lesen</span><span class="schwierigkeit">Einstieg</span></div>
+  <div class="uebung-inhalt">
+    <p>Bestimmen und begründen Sie die Kardinalität:</p>
+    <ol><li>KLASSE - SCHÜLER</li><li>LEHRKRAFT - KURS</li><li>KUNDIN - KUNDENKARTE</li></ol>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <ol><li><strong>1:n</strong>, eine Klasse umfasst viele Schülerinnen und Schüler, jede Schülerin bzw. jeder Schüler gehört zu genau einer Klasse.</li><li><strong>n:m</strong>, wenn Team-Teaching möglich ist: Eine Lehrkraft unterrichtet mehrere Kurse und ein Kurs kann mehrere Lehrkräfte haben. Nimmt man dagegen an, dass jeder Kurs genau eine Lehrkraft hat, ist <strong>1:n</strong> richtig – bei Kardinalitäten zählt immer die genannte Annahme!</li><li>Im vereinfachten Modell <strong>1:1</strong>: Eine Kundin besitzt genau eine Kundenkarte, jede Karte gehört genau einer Kundin.</li></ol>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 3 · Relationenmodell entwerfen</span><span class="schwierigkeit">Mittel</span></div>
+  <div class="uebung-inhalt">
+    <p>Entwerfen Sie für SCHÜLER besucht KURS ein Relationenmodell. Die Beziehung ist n:m und besitzt das Attribut <code>anmeldedatum</code>.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p><code>SCHUELER(schueler_id PK, name)</code></p>
+    <p><code>KURS(kurs_id PK, bezeichnung)</code></p>
+    <p><code>TEILNAHME(teilnahme_id PK, schueler_id FK, kurs_id FK, anmeldedatum)</code></p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 4 · Redundanz beseitigen</span><span class="schwierigkeit">Mittel</span></div>
+  <div class="uebung-inhalt">
+    <p>Eine Tabelle enthält <code>bestellung_id, kundenname, kundenort, produktname, produktpreis, menge</code>. Zerlegen Sie sie sinnvoll in Tabellen der 3. Normalform.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Eine mögliche Lösung:</p>
+    <ul><li><code>KUNDE(kunde_id PK, name, ort)</code></li><li><code>PRODUKT(produkt_id PK, name, preis)</code></li><li><code>BESTELLUNG(bestellung_id PK, kunde_id FK)</code></li><li><code>POSITION(position_id PK, bestellung_id FK, produkt_id FK, menge)</code></li></ul>
+    <p>Kundendaten und Produktpreis werden damit nur an einer Stelle gepflegt.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 5 · Tabelle und Datensatz</span><span class="schwierigkeit">Mittel</span></div>
+  <div class="uebung-inhalt">
+    <p>Schreiben Sie SQL für eine Tabelle <code>kategorie</code> mit Ganzzahl-Primärschlüssel und verpflichtendem Namen. Fügen Sie anschließend die Kategorie „Informatik“ mit ID 3 ein.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+<pre class="code" data-lang="sql">CREATE TABLE kategorie (
+  kategorie_id INT PRIMARY KEY,
+  name VARCHAR(60) NOT NULL
+);
+
+INSERT INTO kategorie (kategorie_id, name)
+VALUES (3, 'Informatik');</pre>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 6 · Offene Ausleihen</span><span class="schwierigkeit">Anspruchsvoll</span></div>
+  <div class="uebung-inhalt">
+    <p>Geben Sie alle Personen und Buchtitel aus, deren Ausleihe noch kein Rückgabedatum besitzt. Sortieren Sie nach Name und Titel.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+<pre class="code" data-lang="sql">SELECT person.name, buch.titel
+FROM ausleihe
+INNER JOIN person
+  ON ausleihe.person_id = person.person_id
+INNER JOIN buch
+  ON ausleihe.buch_id = buch.buch_id
+WHERE ausleihe.rueckgabedatum IS NULL
+ORDER BY person.name, buch.titel;</pre>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 7 · Auswertung und Verantwortung</span><span class="schwierigkeit">Transfer</span></div>
+  <div class="uebung-inhalt">
+    <p>Eine Lern-App speichert Bearbeitungszeit, Fehler, Klickwege und Standort. Nennen Sie zwei sinnvolle Auswertungen, zwei Risiken und zwei Maßnahmen für einen verantwortlichen Einsatz.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p><strong>Chancen:</strong> schwierige Aufgaben erkennen; passende Wiederholungen anbieten.</p>
+    <p><strong>Risiken:</strong> Überwachung; vorschnelle Bewertung oder Benachteiligung.</p>
+    <p><strong>Maßnahmen:</strong> Standort nicht erfassen, wenn er nicht nötig ist; klare Information, kurze Speicherfristen, geschützte Zugriffe und menschliche Kontrolle.</p>
+  </div></details>
+</div>
+
+<div class="box box-tipp">
+  <span class="box-titel">Nächster Schritt</span>
+  <p>
+    Prüfen Sie Ihren Stand in der <a href="checklisten.html#bpe6">BPE-6-Checkliste</a>
+    und wiederholen Sie die Syntax im <a href="referenz.html#sql">SQL-Spickzettel</a>.
+    Danach führt der Lernweg zu <a href="kapitel-4-arrays.html">BPE 7: Algorithmen und Datenstrukturen</a>.
+  </p>
+</div>
+
+<div class="seiten-nav">
+  <a href="kapitel-3-kontrollstrukturen.html">← BPE 5: Kontrollstrukturen</a>
+  <a href="kapitel-4-arrays.html">BPE 7: Arrays →</a>
+</div>
+
+</main>
+
+<a class="nach-oben" href="#" title="Nach oben">↑</a>
+
+<footer class="fuss">
+  <div class="fuss-inner">
+    <p>Lehrbuch · BPE 6 „Relationale Datenbanken“ · Jahrgangsstufe 1</p>
+    <p>Inhaltlich orientiert am Bildungsplan Informatik des Beruflichen Gymnasiums Baden-Württemberg, BPE 6.1 bis 6.5.</p>
+  </div>
+</footer>
+
+<script src="assets/lehrbuch.js?v=2.4.1"></script>
+</body>
+</html>

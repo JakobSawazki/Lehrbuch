@@ -1,18 +1,51 @@
-# Uebungen zu BPE 8: Gesellschaftliche Aspekte
+# Übungen zu BPE 8: Gesellschaftliche Aspekte
 
-## Uebung 1: Algorithmus im Alltag
+> **Rolle dieser Datei:** Themenübersicht für die Aufgabenplanung. Die
+> kanonische Schülerfassung mit acht Aufgaben und aufklappbaren Lösungen steht
+> im Abschnitt [Übungen des BPE-8-Kapitels](../bpe-8-gesellschaftliche-aspekte.html#uebungen).
+
+## Lernfortschritt 1: Algorithmischer Einfluss
+
+### Übung 1: Algorithmus im Alltag
 
 Beschreibe eine Situation, in der ein Algorithmus beeinflusst, welche
 Informationen du siehst.
 
-## Uebung 2: Chancen und Risiken
+### Übung 2: Eine Vorauswahl untersuchen
+
+Untersuche bei einer Suchmaschine oder einem Empfehlungssystem Zweck, Daten,
+Regeln, Ergebnis und mögliche Wirkung.
+
+## Lernfortschritt 2: Graphen
+
+### Übung 3: Graph modellieren
+
+Modelliere ein kleines soziales Netzwerk oder einen Verkehrsplan als Graph.
+Begründe, ob die Kanten gerichtet oder ungerichtet und gewichtet oder
+ungewichtet sein sollten.
+
+### Übung 4: Wege, Kreise und Grade
+
+Bestimme Knotengrade, verschiedene Wege zwischen zwei Knoten und mindestens
+einen Kreis.
+
+### Übung 5: Kürzesten Weg untersuchen
+
+Vergleiche mehrere Wege in einem gewichteten Graphen und berechne ihre
+Gesamtgewichte.
+
+## Lernfortschritt 3: Beurteilen
+
+### Übung 6: Chancen und Risiken
 
 Vergleiche Chancen und Risiken eines algorithmischen Empfehlungssystems.
 
-## Uebung 3: Graph modellieren
+### Übung 7: Fallbeispiel beurteilen
 
-Modelliere ein kleines soziales Netzwerk oder einen Verkehrsplan als Graph.
+Beurteile ein algorithmisches Auswahlverfahren anhand von Transparenz,
+Fairness, Kontrolle und Persönlichkeitsrechten.
 
-## Uebung 4: Wege im Graphen
+### Übung 8: Eigenes Urteil formulieren
 
-Bestimme verschiedene Wege zwischen zwei Knoten und erklaere, was ein Kreis ist.
+Formuliere ein begründetes Urteil mit These, Argumenten, Gegenargument und
+Fazit. Trenne dabei technische Möglichkeiten von gesellschaftlichen Werten.

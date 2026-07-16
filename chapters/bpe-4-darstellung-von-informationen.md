@@ -15,17 +15,17 @@ Farbcodes und Manipulationen besser einordnen.
 
 Nach dieser BPE kannst du:
 
-- Dezimal-, Binaer- und Hexadezimalsystem unterscheiden
-- Bit und Byte erklaeren
-- einfache Binaerzahlen lesen
+- Dezimal-, Binär- und Hexadezimalsystem unterscheiden
+- Bit und Byte erklären
+- einfache Binärzahlen lesen
 - Hexadezimalwerte als Farbcodes einordnen
 - ASCII als Zeichencodierung beschreiben
-- versteckte oder veraenderte Medieninformationen kritisch beurteilen
+- versteckte oder veränderte Medieninformationen kritisch beurteilen
 
 ## Leitbeispiel: Farbe als Zahl
 
 Ein Farbcode wie `#2E8B57` sieht erst einmal kryptisch aus. Eigentlich besteht
-er aus drei Zahlenwerten fuer Rot, Gruen und Blau.
+er aus drei Zahlenwerten für Rot, Grün und Blau.
 
 Leitfragen:
 
@@ -33,7 +33,7 @@ Leitfragen:
 - Welche Information steckt in jedem Zahlenpaar?
 - Wie wird aus Zahlen eine sichtbare Farbe?
 
-## Bruecke zu Python
+## Brücke zu Python
 
 Python arbeitet mit Datentypen wie `int`, `float`, `str` und `bool`. Diese
 Datentypen sind leichter zu verstehen, wenn klar ist, dass Computer intern mit

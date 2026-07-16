@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BPE 8 · Gesellschaftliche Aspekte – Lehrbuch</title>
+<link rel="icon" type="image/png" href="assets/lehrbuch-favicon.png?v=2.4.1">
+<link rel="apple-touch-icon" href="assets/lehrbuch-apple-touch.png?v=2.4.1">
+<link rel="stylesheet" href="assets/style.css?v=2.4.1">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/lehrbuch-favicon.png" alt="" width="28" height="28"><span>Lehrbuch</span></a>
+    <a class="lab-ruecklink" href="../PythonLab/index.html#workbook">← PythonLab</a>
+    <a href="index.html">Start</a>
+    <a href="inhaltsverzeichnis.html">Inhalt</a>
+    <a href="kapitel-1-kara.html">BPE5 K1</a>
+    <a href="kapitel-2-python-grundlagen.html">BPE5 K2</a>
+    <a href="kapitel-3-kontrollstrukturen.html">BPE5 K3</a>
+    <a href="bpe-6-relationale-datenbanken.html">BPE6 DB</a>
+    <a href="kapitel-4-arrays.html">BPE7 K4</a>
+    <a href="kapitel-5-sortieren-suchen.html">BPE7 K5</a>
+    <a href="kapitel-6-datenstrukturen.html">BPE7 K6</a>
+    <a href="bpe-8-gesellschaftliche-aspekte.html" class="aktiv">BPE8</a>
+    <a href="glossar.html">Glossar</a>
+    <a href="referenz.html">Spickzettel</a>
+    <a href="checklisten.html">Checklisten</a>
+  </div>
+</nav>
+
+<header class="seitenkopf">
+  <div class="kopf-inner">
+    <p class="dachzeile">Jahrgangsstufe 2 · BPE 8 · 10 Stunden</p>
+    <h1>Gesellschaftliche Aspekte – Algorithmen mit Wirkung</h1>
+    <p class="untertitel">
+      Ein Navigationssystem findet Wege, ein soziales Netzwerk ordnet Beiträge,
+      ein Auswahlverfahren trifft Entscheidungen. Sie modellieren solche
+      Zusammenhänge als Graph und beurteilen, wann Algorithmen nützen, auswählen
+      oder Menschen benachteiligen können.
+    </p>
+  </div>
+</header>
+
+<main>
+
+<div class="kapitel-toc">
+  <strong>In dieser Bildungsplaneinheit:</strong>
+  <ol>
+    <li><a href="#alltag">BPE 8.1: Algorithmen in unserer Lebenswelt</a></li>
+    <li><a href="#informationsauswahl">Informationsvorauswahl und Entscheidungen</a></li>
+    <li><a href="#graph">BPE 8.2: Datenstruktur Graph</a></li>
+    <li><a href="#modellieren">Graphen modellieren und untersuchen</a></li>
+    <li><a href="#wege">Vertiefung: kürzeste Wege</a></li>
+    <li><a href="#bewerten">BPE 8.3: Chancen und Risiken beurteilen</a></li>
+    <li><a href="#uebungen">Übungsaufgaben</a></li>
+  </ol>
+</div>
+
+<div class="box box-ziel">
+  <span class="box-titel">Das können Sie nach BPE 8</span>
+  <ul>
+    <li>Einflussbereiche von Algorithmen im Alltag erkennen und beschreiben,</li>
+    <li>Informationsvorauswahl und algorithmische Entscheidungen kritisch untersuchen,</li>
+    <li>lebensnahe Situationen mit Knoten und Kanten als Graph modellieren,</li>
+    <li>Grad, Richtung, Gewicht, Weg und Kreis fachsprachlich sicher verwenden,</li>
+    <li>einfache Wege in Graphen analysieren und vergleichen,</li>
+    <li>Chancen und Risiken anhand von Transparenz, Fairness und Kontrolle beurteilen.</li>
+  </ul>
+</div>
+
+<div class="algo-weg" aria-label="Lernweg durch BPE 8">
+  <div class="algo-schritt"><strong>1 · Entdecken</strong><span>Wo beeinflussen Algorithmen meinen Alltag?</span></div>
+  <div class="algo-schritt"><strong>2 · Modellieren</strong><span>Welche Knoten und Kanten bilden die Situation ab?</span></div>
+  <div class="algo-schritt"><strong>3 · Analysieren</strong><span>Welche Wege, Kreise und Gewichtungen gibt es?</span></div>
+  <div class="algo-schritt"><strong>4 · Beurteilen</strong><span>Wer profitiert, wer trägt Risiken und wer kontrolliert?</span></div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="alltag"><span class="knr">8.1</span>Algorithmen in unserer Lebenswelt</h2>
+
+<p>
+  Ein Algorithmus ist eine eindeutige Folge von Schritten, die ein Problem löst
+  oder eine Aufgabe bearbeitet. Im Alltag sehen wir diese Schritte meist nicht.
+  Wir sehen nur das Ergebnis: eine Route, eine Empfehlung, eine Rangfolge oder
+  eine Entscheidung.
+</p>
+
+<div class="entscheidung-fluss" aria-label="Vom Datensatz zur algorithmischen Wirkung">
+  <div class="station">Daten</div><span class="pfeil">→</span>
+  <div class="station">Regeln und Ziel</div><span class="pfeil">→</span>
+  <div class="station">Ergebnis</div><span class="pfeil">→</span>
+  <div class="station">Wirkung auf Menschen</div>
+</div>
+
+<p>
+  Für eine faire Beurteilung reicht deshalb die Frage „Funktioniert der
+  Algorithmus?“ nicht aus. Ebenso wichtig ist: Welche Daten erhält er? Welches
+  Ziel wurde festgelegt? Welche Fehler sind möglich? Und welche Folgen hat das
+  Ergebnis für Betroffene?
+</p>
+
+<div class="fallvergleich">
+  <div class="fallkarte">
+    <h4>Suchmaschine</h4>
+    <p>Ordnet viele Webseiten nach vermuteter Relevanz. Sie spart Zeit, zeigt aber nie alle Ergebnisse gleichzeitig.</p>
+  </div>
+  <div class="fallkarte">
+    <h4>Soziales Netzwerk</h4>
+    <p>Wählt Beiträge aus, die wahrscheinlich Aufmerksamkeit erzeugen. Dadurch kann ein einseitiges Bild entstehen.</p>
+  </div>
+  <div class="fallkarte">
+    <h4>Autonomes Fahren</h4>
+    <p>Verarbeitet Sensorwerte und muss sehr schnell reagieren. Fehler können direkte Folgen für Menschen haben.</p>
+  </div>
+  <div class="fallkarte">
+    <h4>Auswahlverfahren</h4>
+    <p>Sortiert Bewerbungen oder prüft Bonität. Ungeeignete Daten können bestimmte Gruppen systematisch benachteiligen.</p>
+  </div>
+</div>
+
+<div class="box box-merke">
+  <span class="box-titel">Wann ist ein Algorithmus „gut“?</span>
+  <p>
+    Ein guter Algorithmus löst die vorgesehene Aufgabe zuverlässig und mit
+    vertretbarem Aufwand. Bei gesellschaftlichen Entscheidungen muss er darüber
+    hinaus nachvollziehbar, datenschutzgerecht und fair eingesetzt werden.
+  </p>
+</div>
+
+<div class="quiz" data-erklaerung="Das sichtbare Ergebnis hängt sowohl von den Eingangsdaten als auch von den festgelegten Regeln und Zielen ab.">
+  <span class="quiz-titel">Kurzcheck</span>
+  <p class="quiz-frage">Wovon hängt das Ergebnis eines Algorithmus unmittelbar ab?</p>
+  <button class="antwort">Nur von der Geschwindigkeit des Computers</button>
+  <button class="antwort" data-richtig>Von Daten, Regeln und Zielsetzung</button>
+  <button class="antwort">Nur von der Zahl der Nutzerinnen und Nutzer</button>
+  <p class="quiz-feedback"></p>
+</div>
+
+<h3 id="informationsauswahl">Informationsvorauswahl und Entscheidungen</h3>
+
+<p>
+  Kein Empfehlungssystem kann alles gleichzeitig zeigen. Es nimmt eine
+  <strong>Selektion</strong> vor: Manche Informationen erscheinen weit oben,
+  andere später oder gar nicht. Personalisierung kann hilfreich sein, aber auch
+  eine <strong>Filterblase</strong> verstärken, in der überwiegend Inhalte zum
+  bisherigen Verhalten und Weltbild sichtbar werden.
+</p>
+
+<table class="tab">
+  <tr><th>Frage</th><th>Warum sie wichtig ist</th></tr>
+  <tr><td>Welche Daten fließen ein?</td><td>Unvollständige oder verzerrte Daten führen zu verzerrten Ergebnissen.</td></tr>
+  <tr><td>Was wird optimiert?</td><td>„Lange Nutzungsdauer“ ist ein anderes Ziel als „vielfältige Information“.</td></tr>
+  <tr><td>Was wird nicht gezeigt?</td><td>Auswahl bedeutet immer auch, dass Alternativen weniger sichtbar sind.</td></tr>
+  <tr><td>Kann ich widersprechen?</td><td>Folgenreiche Entscheidungen brauchen Kontrolle und Korrekturmöglichkeiten.</td></tr>
+</table>
+
+<div class="box box-achtung">
+  <span class="box-titel">Aus Daten wird nicht automatisch Wahrheit</span>
+  <p>
+    Vergangene Daten enthalten auch frühere Ungleichheiten und Fehler. Lernt ein
+    System daraus, kann es diese Muster wiederholen. „Der Computer hat
+    entschieden“ ist deshalb keine ausreichende Begründung.
+  </p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="graph"><span class="knr">8.2</span>Die Datenstruktur Graph</h2>
+
+<p>
+  Ein <strong>Graph</strong> modelliert Netzwerke. Er besteht aus
+  <strong>Knoten</strong> und <strong>Kanten</strong>. Knoten stellen Objekte dar,
+  Kanten ihre Verbindungen. Bäume und verkettete Listen aus BPE 7 sind besondere
+  Formen von Graphen.
+</p>
+
+<div class="begriff-kacheln">
+  <div><strong>Knoten</strong><span>Objekt im Modell, zum Beispiel Person, Haltestelle oder Computer.</span></div>
+  <div><strong>Kante</strong><span>Direkte Verbindung zwischen zwei Knoten, zum Beispiel Freundschaft oder Straße.</span></div>
+  <div><strong>Grad</strong><span>Anzahl der Kanten, die an einem Knoten anliegen.</span></div>
+  <div><strong>Weg</strong><span>Folge verbundener Knoten ohne wiederholten Knoten.</span></div>
+  <div><strong>Kreis</strong><span>Geschlossener Weg, der zum Startknoten zurückführt.</span></div>
+  <div><strong>Gewicht</strong><span>Zahl an einer Kante, etwa Entfernung, Zeit oder Kosten.</span></div>
+</div>
+
+<h3>Ungerichtet, gerichtet und gewichtet</h3>
+
+<table class="tab">
+  <tr><th>Graphart</th><th>Merkmal</th><th>Beispiel</th></tr>
+  <tr><td><strong>ungerichtet</strong></td><td>Eine Kante besitzt keine Richtung.</td><td>gegenseitige Freundschaft</td></tr>
+  <tr><td><strong>gerichtet</strong></td><td>Ein Pfeil zeigt, in welche Richtung die Verbindung gilt.</td><td>Person A folgt Person B</td></tr>
+  <tr><td><strong>gewichtet</strong></td><td>Eine Zahl beschreibt die Bedeutung oder Kosten einer Kante.</td><td>Fahrzeit zwischen Haltestellen</td></tr>
+</table>
+
+<div class="quiz" data-erklaerung="Bei einer Einbahnstraße darf die Kante nur in der erlaubten Fahrtrichtung durchlaufen werden; die Fahrzeit ist ihr Gewicht.">
+  <span class="quiz-titel">Kurzcheck</span>
+  <p class="quiz-frage">Wie modelliert man ein Straßennetz mit Einbahnstraßen und Fahrzeiten?</p>
+  <button class="antwort">Ungerichtet und ungewichtet</button>
+  <button class="antwort">Ungerichtet und gewichtet</button>
+  <button class="antwort" data-richtig>Gerichtet und gewichtet</button>
+  <p class="quiz-feedback"></p>
+</div>
+
+<h3 id="modellieren">Leitbeispiel: ein soziales Netzwerk</h3>
+
+<div class="graph-visual">
+  <svg viewBox="0 0 800 440" role="img" aria-label="Ungerichteter Graph eines sozialen Netzwerks mit sieben Personen und zehn Freundschaften">
+    <line class="graph-kante" x1="140" y1="80" x2="400" y2="65" />
+    <line class="graph-kante" x1="140" y1="80" x2="655" y2="105" />
+    <line class="graph-kante" x1="400" y1="65" x2="655" y2="105" />
+    <line class="graph-kante" x1="350" y1="225" x2="140" y2="80" />
+    <line class="graph-kante" x1="350" y1="225" x2="400" y2="65" />
+    <line class="graph-kante" x1="350" y1="225" x2="655" y2="105" />
+    <line class="graph-kante" x1="575" y1="275" x2="140" y2="80" />
+    <line class="graph-kante" x1="575" y1="275" x2="400" y2="65" />
+    <line class="graph-kante" x1="675" y1="390" x2="655" y2="105" />
+    <line class="graph-kante" x1="125" y1="350" x2="140" y2="80" />
+    <circle class="graph-knoten" cx="140" cy="80" r="34" /><text class="graph-label" x="140" y="80">T</text>
+    <circle class="graph-knoten" cx="400" cy="65" r="34" /><text class="graph-label" x="400" y="65">C</text>
+    <circle class="graph-knoten" cx="655" cy="105" r="34" /><text class="graph-label" x="655" y="105">H</text>
+    <circle class="graph-knoten" cx="350" cy="225" r="34" /><text class="graph-label" x="350" y="225">S</text>
+    <circle class="graph-knoten" cx="575" cy="275" r="34" /><text class="graph-label" x="575" y="275">P</text>
+    <circle class="graph-knoten" cx="675" cy="390" r="34" /><text class="graph-label" x="675" y="390">M</text>
+    <circle class="graph-knoten" cx="125" cy="350" r="34" /><text class="graph-label" x="125" y="350">L</text>
+  </svg>
+  <div class="graph-legende">
+    <span><i class="leg-knoten"></i>T Tina</span><span>C Carina</span><span>H Hatice</span>
+    <span>S Sven</span><span>P Paul</span><span>M Merve</span><span>L Linus</span>
+    <span><i class="leg-kante"></i>Freundschaft</span>
+  </div>
+</div>
+
+<p>
+  Tina besitzt fünf direkte Verbindungen, ihr Knoten hat also den Grad 5. Merve
+  erreicht Paul über den Weg <code>(M, H, C, P)</code>. Der Weg
+  <code>(T, C, H)</code> wird durch die Kante von H zurück zu T zu einem Kreis.
+</p>
+
+<div class="box box-tipp">
+  <span class="box-titel">Vier Schritte zum eigenen Graphen</span>
+  <ol>
+    <li>Festlegen, was ein Knoten darstellt.</li>
+    <li>Festlegen, wann zwei Knoten durch eine Kante verbunden sind.</li>
+    <li>Entscheiden, ob Richtung oder Gewicht benötigt werden.</li>
+    <li>Am fertigen Modell prüfen, ob jede Kante fachlich stimmt.</li>
+  </ol>
+</div>
+
+<h3 id="wege">Vertiefung: kürzeste Wege</h3>
+
+<p>
+  In einem Verkehrsgraphen können Gewichte Fahrzeiten darstellen. Der kürzeste
+  Weg ist dann nicht zwingend der Weg mit den wenigsten Kanten, sondern der mit
+  der kleinsten Summe der Kantengewichte. Der Dijkstra-Algorithmus bestimmt
+  solche Wege systematisch.
+</p>
+
+<div class="graph-visual">
+  <svg viewBox="0 0 800 400" role="img" aria-label="Gewichteter Graph mit hervorgehobenem kürzesten Weg von A nach E">
+    <line class="graph-kante hervor" x1="90" y1="200" x2="270" y2="90" />
+    <line class="graph-kante" x1="90" y1="200" x2="300" y2="315" />
+    <line class="graph-kante hervor" x1="270" y1="90" x2="430" y2="210" />
+    <line class="graph-kante" x1="270" y1="90" x2="585" y2="85" />
+    <line class="graph-kante" x1="300" y1="315" x2="430" y2="210" />
+    <line class="graph-kante hervor" x1="430" y1="210" x2="585" y2="85" />
+    <line class="graph-kante" x1="430" y1="210" x2="700" y2="270" />
+    <line class="graph-kante hervor" x1="585" y1="85" x2="700" y2="270" />
+    <text class="graph-gewicht" x="165" y="125">2</text>
+    <text class="graph-gewicht" x="175" y="285">5</text>
+    <text class="graph-gewicht" x="355" y="130">1</text>
+    <text class="graph-gewicht" x="420" y="65">4</text>
+    <text class="graph-gewicht" x="345" y="255">2</text>
+    <text class="graph-gewicht" x="515" y="155">2</text>
+    <text class="graph-gewicht" x="570" y="275">6</text>
+    <text class="graph-gewicht" x="655" y="165">1</text>
+    <circle class="graph-knoten start" cx="90" cy="200" r="34" /><text class="graph-label" x="90" y="200">A</text>
+    <circle class="graph-knoten" cx="270" cy="90" r="34" /><text class="graph-label" x="270" y="90">B</text>
+    <circle class="graph-knoten" cx="300" cy="315" r="34" /><text class="graph-label" x="300" y="315">C</text>
+    <circle class="graph-knoten" cx="430" cy="210" r="34" /><text class="graph-label" x="430" y="210">D</text>
+    <circle class="graph-knoten" cx="585" cy="85" r="34" /><text class="graph-label" x="585" y="85">F</text>
+    <circle class="graph-knoten ziel" cx="700" cy="270" r="34" /><text class="graph-label" x="700" y="270">E</text>
+  </svg>
+  <div class="graph-legende">
+    <span><i class="leg-start"></i>Start A</span><span><i class="leg-ziel"></i>Ziel E</span>
+    <span><i class="leg-kante"></i>Kantengewicht</span><span>Grün: kürzester Weg</span>
+  </div>
+</div>
+
+<table class="tab">
+  <tr><th>Weg von A nach E</th><th>Rechnung</th><th>Länge</th></tr>
+  <tr><td><code>A – B – F – E</code></td><td>2 + 4 + 1</td><td>7</td></tr>
+  <tr><td><code>A – C – D – E</code></td><td>5 + 2 + 6</td><td>13</td></tr>
+  <tr><td><code>A – B – D – F – E</code></td><td>2 + 1 + 2 + 1</td><td><strong>6</strong></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="bewerten"><span class="knr">8.3</span>Chancen und Risiken beurteilen</h2>
+
+<p>
+  Algorithmen können schneller rechnen, große Datenmengen verarbeiten und
+  Muster erkennen. Künstliche Intelligenz nutzt solche Verfahren zum Beispiel
+  für Sprach- und Bilderkennung. Gleichzeitig können ungeeignete Ziele,
+  einseitige Trainingsdaten oder fehlende Kontrolle große Schäden verursachen.
+</p>
+
+<div class="bewertungsraster">
+  <div class="bewertungspunkt"><strong>1 · Zweck</strong><span>Welche Aufgabe soll das System lösen? Ist der Einsatz dafür angemessen?</span></div>
+  <div class="bewertungspunkt"><strong>2 · Daten</strong><span>Woher stammen sie? Sind sie aktuell, relevant und möglichst unverzerrt?</span></div>
+  <div class="bewertungspunkt"><strong>3 · Selektion</strong><span>Welche Informationen oder Personen werden hervorgehoben oder aussortiert?</span></div>
+  <div class="bewertungspunkt"><strong>4 · Transparenz</strong><span>Können Betroffene Regeln, Kriterien und Ergebnis nachvollziehen?</span></div>
+  <div class="bewertungspunkt"><strong>5 · Fairness</strong><span>Werden vergleichbare Fälle gleich behandelt? Gibt es systematische Nachteile?</span></div>
+  <div class="bewertungspunkt"><strong>6 · Kontrolle</strong><span>Wer trägt Verantwortung? Kann ein Mensch prüfen, korrigieren und widersprechen?</span></div>
+</div>
+
+<h3>Drei Schlüsselbegriffe</h3>
+
+<table class="tab">
+  <tr><th>Begriff</th><th>Bedeutung</th><th>Prüffrage</th></tr>
+  <tr><td><strong>Filterblase</strong></td><td>Personalisierte Auswahl bestätigt überwiegend bisherige Interessen oder Ansichten.</td><td>Bekomme ich auch überraschende oder widersprechende Informationen?</td></tr>
+  <tr><td><strong>Transparenz</strong></td><td>Regeln, verwendete Daten und Gründe einer Entscheidung sind nachvollziehbar.</td><td>Kann die Entscheidung verständlich erklärt werden?</td></tr>
+  <tr><td><strong>Wertneutralität</strong></td><td>Unerwünschte Wertungen sollen nicht unbemerkt in Ziel, Regeln oder Daten einfließen.</td><td>Welche Annahmen und Interessen stecken im System?</td></tr>
+</table>
+
+<div class="fallvergleich">
+  <div class="fallkarte">
+    <h4>Chance: medizinische Unterstützung</h4>
+    <p>Ein System markiert auffällige Bildbereiche. Ärztinnen und Ärzte erhalten einen zusätzlichen Hinweis, behalten aber die Entscheidung und Verantwortung.</p>
+  </div>
+  <div class="fallkarte">
+    <h4>Risiko: automatisierte Personenauswahl</h4>
+    <p>Ein System sortiert Bewerbungen aus. Sind Trainingsdaten einseitig, können geeignete Personen unbemerkt benachteiligt werden.</p>
+  </div>
+</div>
+
+<div class="box box-merke">
+  <span class="box-titel">Eine Beurteilung braucht ein Urteil und Gründe</span>
+  <p>
+    Nennen Sie nicht nur „Chance“ oder „Risiko“. Beschreiben Sie zuerst den
+    konkreten Mechanismus, erklären Sie die mögliche Folge und formulieren Sie
+    anschließend eine begründete Bewertung oder Schutzmaßnahme.
+  </p>
+</div>
+
+<div class="quiz" data-erklaerung="Bei einer folgenreichen Entscheidung müssen Betroffene verstehen können, welche Kriterien verwendet wurden, und eine Korrektur verlangen können.">
+  <span class="quiz-titel">Kurzcheck</span>
+  <p class="quiz-frage">Welche Kombination ist bei einer automatisierten Kreditentscheidung besonders wichtig?</p>
+  <button class="antwort">Geheimhaltung und maximale Geschwindigkeit</button>
+  <button class="antwort" data-richtig>Transparenz, faire Daten und Widerspruchsmöglichkeit</button>
+  <button class="antwort">Möglichst viele persönliche Daten ohne Zweckbindung</button>
+  <p class="quiz-feedback"></p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="uebungen"><span class="knr">Ü</span>Übungsaufgaben</h2>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 1 · Algorithmus-Tagebuch</span><span class="schwierigkeit">Einstieg</span></div>
+  <div class="uebung-inhalt">
+    <p>Nennen Sie drei Situationen eines Tages, in denen ein Algorithmus Informationen auswählt oder eine Entscheidung vorbereitet. Beschreiben Sie jeweils Eingabedaten, Ergebnis und mögliche Wirkung.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Beispiel Navigation: Eingaben sind Start, Ziel, Straßennetz und Verkehrsdaten. Ergebnis ist eine Route. Sie beeinflusst, welche Straßen genutzt werden. Weitere mögliche Beispiele sind Suchmaschine, Musikempfehlung oder Spamfilter.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 2 · Ein „guter“ Algorithmus?</span><span class="schwierigkeit">Mittel</span></div>
+  <div class="uebung-inhalt">
+    <p>Eine Lernplattform empfiehlt immer die Aufgaben, die am häufigsten angeklickt werden. Beurteilen Sie die Qualität dieses Verfahrens. Nennen Sie mindestens drei Kriterien und schlagen Sie eine Verbesserung vor.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Das Verfahren ist schnell, aber Klickhäufigkeit sagt wenig über den individuellen Lernbedarf aus. Zu prüfen sind Zielerreichung, Datenqualität, Vielfalt und Fairness. Eine Verbesserung wäre, Lernstand und unterschiedliche Aufgabentypen einzubeziehen und Empfehlungen erklärbar zu machen.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 3 · Graph lesen</span><span class="schwierigkeit">Einstieg</span></div>
+  <div class="uebung-inhalt">
+    <p>Untersuchen Sie den Graphen des sozialen Netzwerks: Bestimmen Sie den Grad von Hatice und Linus, einen Weg von Merve zu Linus sowie einen Kreis.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Hatice hat Grad 4, Linus Grad 1. Ein Weg ist <code>(M, H, T, L)</code>. Ein möglicher Kreis ist <code>(T, C, H, T)</code>.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 4 · Organisation modellieren</span><span class="schwierigkeit">Mittel</span></div>
+  <div class="uebung-inhalt">
+    <p>Eine Schulleitung gibt Anweisungen an zwei Abteilungsleitungen. Jede Abteilungsleitung gibt sie an zwei Lehrkräfte weiter. Modellieren Sie die Situation als Graph und begründen Sie, ob er gerichtet oder gewichtet sein muss.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Die sieben Personen werden Knoten. Pfeile führen von der Schulleitung zu den Abteilungsleitungen und von dort zu den Lehrkräften. Der Graph ist gerichtet. Eine Gewichtung ist nur nötig, wenn zusätzlich etwa Übertragungszeit oder Priorität dargestellt werden soll.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 5 · Verkehrsplan</span><span class="schwierigkeit">Mittel</span></div>
+  <div class="uebung-inhalt">
+    <p>Erklären Sie für einen U-Bahn-Plan: Was bedeuten Knoten, Kanten, Richtung, Gewicht, Weg und Kreis? Nennen Sie jeweils ein passendes Beispiel.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Knoten sind Stationen, Kanten direkte Strecken. Richtung wird benötigt, wenn eine Strecke nur in eine Richtung befahren wird. Fahrzeit kann das Gewicht sein. Ein Weg verbindet Start und Ziel; eine Ringlinie enthält einen Kreis.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 6 · Kürzester Weg</span><span class="schwierigkeit">Mittel</span></div>
+  <div class="uebung-inhalt">
+    <p>Berechnen Sie im gewichteten Beispielgraphen die Länge der Wege <code>A–B–F–E</code>, <code>A–C–D–F–E</code> und <code>A–B–D–F–E</code>. Welcher ist am kürzesten?</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p><code>A–B–F–E = 2+4+1 = 7</code>, <code>A–C–D–F–E = 5+2+2+1 = 10</code>, <code>A–B–D–F–E = 2+1+2+1 = 6</code>. Der dritte Weg ist am kürzesten.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 7 · Empfehlungssystem prüfen</span><span class="schwierigkeit">Anspruchsvoll</span></div>
+  <div class="uebung-inhalt">
+    <p>Eine Video-App empfiehlt Inhalte allein nach bisheriger Sehzeit. Untersuchen Sie Selektion, Filterblase, Transparenz und Wertneutralität. Formulieren Sie zwei Schutzmaßnahmen.</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Die App selektiert zugunsten von Inhalten, die lange binden. Dadurch können ähnliche Ansichten immer wieder erscheinen. Ohne Erklärung ist die Auswahl intransparent; die Zielsetzung „Sehzeit“ ist eine Wertentscheidung. Maßnahmen: Auswahlkriterien anzeigen, chronologische oder vielfältige Ansicht anbieten, sensible Merkmale begrenzen und Empfehlungen zurücksetzen lassen.</p>
+  </div></details>
+</div>
+
+<div class="uebung">
+  <div class="uebung-kopf"><span>Übung 8 · Automatisierte Auswahl beurteilen</span><span class="schwierigkeit">Transfer</span></div>
+  <div class="uebung-inhalt">
+    <p>Eine Schule möchte Anmeldungen automatisch priorisieren. Verfassen Sie eine begründete Empfehlung: Unter welchen Bedingungen darf ein Algorithmus unterstützen, und welche Entscheidung muss beim Menschen bleiben?</p>
+  </div>
+  <details class="loesung"><summary>Lösung anzeigen</summary><div class="loesung-inhalt">
+    <p>Ein System darf überprüfbare Regeln anwenden und Verwaltungsarbeit unterstützen. Kriterien müssen rechtmäßig, verständlich und auf notwendige Daten begrenzt sein. Betroffene brauchen Auskunft und Widerspruch. Sonderfälle, Konflikte und die endgültige verantwortliche Entscheidung sollten von Menschen geprüft werden.</p>
+  </div></details>
+</div>
+
+<div class="box box-tipp">
+  <span class="box-titel">BPE 8 abschließen</span>
+  <p>
+    Prüfen Sie Ihren Stand in der <a href="checklisten.html#bpe8">BPE-8-Checkliste</a>
+    und wiederholen Sie die Fachbegriffe im <a href="referenz.html#graphen">Graphen- und Bewertungs-Spickzettel</a>.
+  </p>
+</div>
+
+<div class="seiten-nav">
+  <a href="kapitel-6-datenstrukturen.html">← BPE 7: Datenstrukturen</a>
+  <a href="inhaltsverzeichnis.html">Zum Inhaltsverzeichnis →</a>
+</div>
+
+</main>
+
+<a class="nach-oben" href="#" title="Nach oben">↑</a>
+
+<footer class="fuss">
+  <div class="fuss-inner">
+    <p>Lehrbuch · BPE 8 „Gesellschaftliche Aspekte“ · Jahrgangsstufe 2</p>
+    <p>Inhaltlich orientiert am Bildungsplan und den offiziellen Materialien des Landesbildungsservers Baden-Württemberg, BPE 8.1 bis 8.3.</p>
+  </div>
+</footer>
+
+<script src="assets/lehrbuch.js?v=2.4.1"></script>
+</body>
+</html>

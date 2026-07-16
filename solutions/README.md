@@ -1,16 +1,16 @@
-# Loesungen
+# Lösungen
 
-Dieser Ordner ist fuer Loesungsskizzen vorgesehen.
+Dieser Ordner ist für Lösungsskizzen vorgesehen.
 
 Wichtig:
 
-- Vor einer Veroeffentlichung entscheiden, ob Loesungen oeffentlich sein sollen.
-- Fuer Schuelerfassungen sind Hinweise, Zwischenschritte und Selbstchecks oft
-  besser als vollstaendige Musterloesungen.
-- Vollstaendige Loesungen koennen als private Lehrkraftfassung gefuehrt werden.
-- Keine Original-Loesungsdateien aus `resources/` ungeprueft uebernehmen.
+- Vor einer Veröffentlichung entscheiden, ob Lösungen öffentlich sein sollen.
+- Für Schülerfassungen sind Hinweise, Zwischenschritte und Selbstchecks oft
+  besser als vollständige Musterlösungen.
+- Vollständige Lösungen können als private Lehrkraftfassung geführt werden.
+- Keine Original-Lösungsdateien aus `resources/` ungeprüft übernehmen.
 
-Empfohlene Struktur fuer spaeter:
+Empfohlene Struktur für später:
 
 - `bpe5-loesungen.md`
 - `bpe6-loesungen.md`

@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spickzettel · Lehrbuch</title>
-<link rel="icon" type="image/png" href="assets/lehrbuch-favicon.png?v=2.1">
-<link rel="apple-touch-icon" href="assets/lehrbuch-apple-touch.png?v=2.1">
-<link rel="stylesheet" href="assets/style.css?v=2.1">
+<link rel="icon" type="image/png" href="assets/lehrbuch-favicon.png?v=2.4.1">
+<link rel="apple-touch-icon" href="assets/lehrbuch-apple-touch.png?v=2.4.1">
+<link rel="stylesheet" href="assets/style.css?v=2.4.1">
 </head>
 <body>
 
@@ -19,9 +19,11 @@
     <a href="kapitel-1-kara.html">BPE5 K1</a>
     <a href="kapitel-2-python-grundlagen.html">BPE5 K2</a>
     <a href="kapitel-3-kontrollstrukturen.html">BPE5 K3</a>
+    <a href="bpe-6-relationale-datenbanken.html">BPE6 DB</a>
     <a href="kapitel-4-arrays.html">BPE7 K4</a>
     <a href="kapitel-5-sortieren-suchen.html">BPE7 K5</a>
     <a href="kapitel-6-datenstrukturen.html">BPE7 K6</a>
+    <a href="bpe-8-gesellschaftliche-aspekte.html">BPE8</a>
     <a href="glossar.html">Glossar</a>
     <a href="referenz.html" class="aktiv">Spickzettel</a>
     <a href="checklisten.html">Checklisten</a>
@@ -33,7 +35,7 @@
     <p class="dachzeile">Nachschlagen &amp; Wiederholen</p>
     <h1>Der Python-Spickzettel 📋</h1>
     <p class="untertitel">
-      Alle wichtigen Bausteine der BPE 5 und BPE 7 auf einer Seite – ideal zum Nachschlagen beim
+      Alle wichtigen Bausteine der BPE 5, BPE 6 und BPE 7 auf einer Seite – ideal zum Nachschlagen beim
       Programmieren und zum Wiederholen vor der Klassenarbeit. (Diese Seite lässt sich
       auch gut ausdrucken.)
     </p>
@@ -53,6 +55,8 @@
     <li><a href="#arrays">Arrays (BPE 7)</a></li>
     <li><a href="#algos">Sortieren &amp; Suchen (BPE 7)</a></li>
     <li><a href="#dynstrukturen">Dynamische Datenstrukturen (BPE 7)</a></li>
+    <li><a href="#sql">SQL und relationale Datenbanken (BPE 6)</a></li>
+    <li><a href="#graphen">Graphen und Algorithmen beurteilen (BPE 8)</a></li>
     <li><a href="#stg">Struktogramm-Elemente</a></li>
     <li><a href="#fehler">Häufige Fehlermeldungen</a></li>
   </ol>
@@ -439,6 +443,104 @@ while gefunden == False and anfang &lt;= ende:
 </div>
 
 <!-- ============================================================ -->
+<h2 id="sql">SQL und relationale Datenbanken (BPE 6)</h2>
+
+<p>
+  SQL-Anweisungen formulieren Sie am besten wie eine genaue Frage: zuerst die
+  gewünschten Spalten, dann die Tabellen, anschließend Bedingungen, Gruppierung
+  und Sortierung. Großschreibung der SQL-Schlüsselwörter ist üblich, aber nicht zwingend.
+</p>
+
+<h3>Tabellen anlegen und Daten einfügen</h3>
+<pre class="code" data-lang="sql">CREATE TABLE person (
+    person_id INT PRIMARY KEY,
+    name VARCHAR(80) NOT NULL
+);
+
+INSERT INTO person (person_id, name)
+VALUES (1, 'Mira Klein');</pre>
+
+<h3>Daten filtern und sortieren</h3>
+<pre class="code" data-lang="sql">SELECT titel, erscheinungsjahr
+FROM buch
+WHERE erscheinungsjahr &gt;= 2020
+  AND verfuegbar = TRUE
+ORDER BY titel ASC;</pre>
+
+<h3>Tabellen verknüpfen</h3>
+<pre class="code" data-lang="sql">SELECT person.name, buch.titel, ausleihe.rueckgabe_am
+FROM ausleihe
+INNER JOIN person
+    ON ausleihe.person_id = person.person_id
+INNER JOIN buch
+    ON ausleihe.buch_id = buch.buch_id
+WHERE ausleihe.rueckgabe_am IS NULL;</pre>
+
+<h3>Gruppieren und berechnen</h3>
+<pre class="code" data-lang="sql">SELECT YEAR(ausgeliehen_am) AS jahr,
+       COUNT(*) AS anzahl
+FROM ausleihe
+GROUP BY YEAR(ausgeliehen_am)
+ORDER BY jahr;</pre>
+
+<table class="tab">
+  <tr><th>Baustein</th><th>Bedeutung</th></tr>
+  <tr><td><code>SELECT</code></td><td>Spalten auswählen</td></tr>
+  <tr><td><code>FROM</code></td><td>Ausgangstabelle festlegen</td></tr>
+  <tr><td><code>JOIN ... ON</code></td><td>Tabellen über passende Schlüssel verbinden</td></tr>
+  <tr><td><code>WHERE</code></td><td>Einzelne Datensätze filtern</td></tr>
+  <tr><td><code>GROUP BY</code></td><td>Datensätze für Berechnungen zusammenfassen</td></tr>
+  <tr><td><code>ORDER BY</code></td><td>Ergebnis auf- oder absteigend sortieren</td></tr>
+  <tr><td><code>COUNT, SUM, AVG, MIN, MAX</code></td><td>Gruppen oder Zahlenwerte auswerten</td></tr>
+</table>
+
+<div class="box box-achtung">
+  <span class="box-titel">Typische SQL-Stolperfalle</span>
+  <p>
+    Eine <code>WHERE</code>-Bedingung grenzt Datensätze vor der Gruppierung ein.
+    Verknüpfen Sie Tabellen immer über die zusammengehörigen Primär- und
+    Fremdschlüssel, sonst entsteht ein unbrauchbares Kreuzprodukt.
+  </p>
+</div>
+
+<p><a href="bpe-6-relationale-datenbanken.html">Zum ausführlichen BPE-6-Kapitel mit Übungen →</a></p>
+
+<h2 id="graphen">Graphen und Algorithmen beurteilen (BPE 8)</h2>
+
+<h3>Graph-Grundbegriffe</h3>
+<table class="tab">
+  <tr><th>Begriff</th><th>Kurzdefinition</th></tr>
+  <tr><td><strong>Knoten</strong></td><td>Objekt des Modells, zum Beispiel Person oder Haltestelle</td></tr>
+  <tr><td><strong>Kante</strong></td><td>direkte Verbindung zwischen zwei Knoten</td></tr>
+  <tr><td><strong>Grad</strong></td><td>Anzahl der an einem Knoten anliegenden Kanten</td></tr>
+  <tr><td><strong>Weg</strong></td><td>Folge verbundener Knoten ohne Knotenwiederholung</td></tr>
+  <tr><td><strong>Kreis</strong></td><td>geschlossener Weg zurück zum Startknoten</td></tr>
+  <tr><td><strong>gerichtet</strong></td><td>Kanten besitzen eine durch Pfeile festgelegte Richtung</td></tr>
+  <tr><td><strong>gewichtet</strong></td><td>Kanten tragen Zahlen, etwa Zeit, Entfernung oder Kosten</td></tr>
+</table>
+
+<div class="box box-info">
+  <span class="box-titel">Modellier-Rezept</span>
+  <ol>
+    <li>Festlegen, was die Knoten darstellen.</li>
+    <li>Festlegen, wann eine Kante eingezeichnet wird.</li>
+    <li>Richtung und Gewicht nur ergänzen, wenn die Sachsituation sie benötigt.</li>
+    <li>Das fertige Modell mit den Ausgangsinformationen abgleichen.</li>
+  </ol>
+</div>
+
+<h3>Sechs Fragen für ein begründetes Urteil</h3>
+<ol>
+  <li><strong>Zweck:</strong> Welche Aufgabe soll der Algorithmus lösen?</li>
+  <li><strong>Daten:</strong> Sind die Eingangsdaten geeignet und möglichst unverzerrt?</li>
+  <li><strong>Selektion:</strong> Was wird hervorgehoben oder aussortiert?</li>
+  <li><strong>Transparenz:</strong> Ist das Ergebnis nachvollziehbar?</li>
+  <li><strong>Fairness:</strong> Wer profitiert und wer kann benachteiligt werden?</li>
+  <li><strong>Kontrolle:</strong> Wer verantwortet, prüft und korrigiert die Entscheidung?</li>
+</ol>
+
+<p><a href="bpe-8-gesellschaftliche-aspekte.html">Zum ausführlichen BPE-8-Kapitel mit Graphen und Übungen →</a></p>
+
 <h2 id="fehler">Häufige Fehlermeldungen – und was sie bedeuten</h2>
 
 <table class="tab">
@@ -491,10 +593,10 @@ while gefunden == False and anfang &lt;= ende:
 
 <footer class="fuss">
   <div class="fuss-inner">
-    <p>Lehrbuch zur BPE 5 und BPE 7 · Spickzettel</p>
+    <p>Lehrbuch zu BPE 5, BPE 6, BPE 7 und BPE 8 · Spickzettel</p>
   </div>
 </footer>
 
-<script src="assets/lehrbuch.js?v=2.1"></script>
+<script src="assets/lehrbuch.js?v=2.4.1"></script>
 </body>
 </html>

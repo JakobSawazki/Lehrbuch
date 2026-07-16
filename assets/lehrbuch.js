@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initNachOben();
 });
 
-/* ---------- 1. Einfache Python-Syntax-Hervorhebung ---------- */
+/* ---------- 1. Einfache Python- und SQL-Syntax-Hervorhebung ---------- */
 
 function hebeCodeHervor() {
   var bloecke = document.querySelectorAll("pre.code");
@@ -21,6 +21,11 @@ function hebeCodeHervor() {
   var zahl = /\b\d+(?:\.\d+)?\b/;
 
   bloecke.forEach(function (pre) {
+    if (pre.getAttribute("data-lang") === "sql") {
+      pre.innerHTML = hebeSqlTextHervor(pre.textContent);
+      return;
+    }
+
     var text = pre.textContent;
     var html = "";
     var i = 0;
@@ -78,6 +83,82 @@ function hebeCodeHervor() {
 
     pre.innerHTML = html;
   });
+
+  function hebeSqlTextHervor(text) {
+    var schluessel = new Set([
+      "ADD", "ALTER", "AND", "AS", "ASC", "BETWEEN", "BY", "CREATE",
+      "DATABASE", "DELETE", "DESC", "DISTINCT", "DROP", "FOREIGN", "FROM",
+      "GROUP", "HAVING", "IN", "INNER", "INSERT", "INTO", "IS", "JOIN",
+      "KEY", "LEFT", "LIKE", "LIMIT", "NOT", "NULL", "ON", "OR", "ORDER",
+      "PRIMARY", "REFERENCES", "RIGHT", "SELECT", "SET", "TABLE", "UNION",
+      "UNIQUE", "UPDATE", "VALUES", "WHERE"
+    ]);
+    var funktionen = new Set(["AVG", "COUNT", "MAX", "MIN", "MONTH", "SUM", "YEAR"]);
+    var datentypen = new Set([
+      "BOOLEAN", "CHAR", "DATE", "DECIMAL", "DOUBLE", "FLOAT", "INT",
+      "INTEGER", "TEXT", "VARCHAR"
+    ]);
+    var html = "";
+    var i = 0;
+
+    while (i < text.length) {
+      var rest = text.slice(i);
+
+      if (rest.slice(0, 2) === "--") {
+        var ende = rest.indexOf("\n");
+        if (ende === -1) ende = rest.length;
+        html += span("tok-com", rest.slice(0, ende));
+        i += ende;
+        continue;
+      }
+
+      if (rest[0] === "'") {
+        var j = 1;
+        while (j < rest.length) {
+          if (rest[j] === "'" && rest[j + 1] === "'") {
+            j += 2;
+            continue;
+          }
+          if (rest[j] === "'") {
+            j += 1;
+            break;
+          }
+          j += 1;
+        }
+        html += span("tok-str", rest.slice(0, j));
+        i += j;
+        continue;
+      }
+
+      var m;
+      if ((m = rest.match(/^[A-Za-z_][A-Za-z0-9_]*/))) {
+        var wort = m[0];
+        var gross = wort.toUpperCase();
+        if (schluessel.has(gross)) {
+          html += span("tok-kw", wort);
+        } else if (funktionen.has(gross)) {
+          html += span("tok-fn", wort);
+        } else if (datentypen.has(gross)) {
+          html += span("tok-bool", wort);
+        } else {
+          html += escapeHtml(wort);
+        }
+        i += wort.length;
+        continue;
+      }
+
+      if ((m = rest.match(/^\d+(?:\.\d+)?/))) {
+        html += span("tok-num", m[0]);
+        i += m[0].length;
+        continue;
+      }
+
+      html += escapeHtml(rest[0]);
+      i += 1;
+    }
+
+    return html;
+  }
 
   function span(klasse, inhalt) {
     return '<span class="' + klasse + '">' + escapeHtml(inhalt) + "</span>";

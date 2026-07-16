@@ -1,21 +1,34 @@
-# Uebungen zu BPE 6: Relationale Datenbanken
+# Übungen zu BPE 6: Relationale Datenbanken
 
-## Uebung 1: Entitaeten finden
+**Rolle dieser Datei:** Redaktionelle Übungsübersicht. Die ausgearbeiteten
+Schüleraufgaben mit aufklappbaren Lösungen befinden sich gebündelt in der
+[`HTML-Lesefassung`](../bpe-6-relationale-datenbanken.html#uebungen), damit keine
+zweite, abweichende Aufgabensammlung entsteht.
 
-Beschreibe fuer eine Schulbibliothek die wichtigsten Entitaeten und Attribute.
+## Übung 1: Entitäten finden
 
-## Uebung 2: Beziehungen modellieren
+Beschreibe für eine Schulbibliothek die wichtigsten Entitäten und Attribute.
 
-Ergaenze Beziehungen und Kardinalitaeten in einem einfachen ER-Modell.
+## Übung 2: Beziehungen modellieren
 
-## Uebung 3: Relationen ableiten
+Ergänze Beziehungen und Kardinalitäten in einem einfachen ER-Modell.
 
-Ueberfuehre ein kleines ER-Modell in Tabellen mit Primaer- und Fremdschluesseln.
+## Übung 3: Relationen ableiten
 
-## Uebung 4: SQL schreiben
+Überführe ein kleines ER-Modell in Tabellen mit Primär- und Fremdschlüsseln.
+
+## Übung 4: SQL schreiben
 
 Schreibe einfache `SELECT`-Abfragen mit Bedingungen und Sortierung.
 
-## Uebung 5: Massendaten beurteilen
+## Übung 5: Massendaten beurteilen
 
 Diskutiere Chancen und Risiken einer App, die Bewegungsdaten speichert.
+
+## Weitere Aufgaben der HTML-Lesefassung
+
+- geeignete Datentypen, Primär- und Fremdschlüssel festlegen
+- Redundanz und Anomalien erkennen, Tabellen normalisieren
+- Tabellen mit `CREATE TABLE` und Datensätze mit `INSERT` umsetzen
+- Abfragen über mehrere Tabellen mit `JOIN` formulieren
+- Ergebnisse mit Aggregatfunktionen und `GROUP BY` auswerten

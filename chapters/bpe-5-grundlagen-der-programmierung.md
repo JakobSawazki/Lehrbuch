@@ -16,7 +16,7 @@ werden nicht noch einmal als getrennte Parallelkapitel angelegt.
 
 Diese BPE ist der Einstieg in das eigentliche Programmieren. Du lernst, wie ein
 Programm Daten entgegennimmt, verarbeitet und wieder ausgibt. Aus einzelnen
-Anweisungen werden nachvollziehbare Ablaeufe.
+Anweisungen werden nachvollziehbare Abläufe.
 
 ## Lernziele
 
@@ -36,7 +36,7 @@ Nach dieser BPE kannst du:
 ### 5.1 Kara als Einstieg
 
 Kara macht Programmablauf sichtbar. Du siehst, wie ein Befehl nach dem anderen
-ausgefuehrt wird, und erkennst Bedingungen und Wiederholungen direkt in einer
+ausgeführt wird, und erkennst Bedingungen und Wiederholungen direkt in einer
 kleinen Welt.
 
 ```python
@@ -60,8 +60,8 @@ print("Flaeche:", flaeche)
 
 ### 5.3 Kontrollstrukturen
 
-Kontrollstrukturen entscheiden, welche Anweisungen ausgefuehrt werden und wie
-oft sie ausgefuehrt werden.
+Kontrollstrukturen entscheiden, welche Anweisungen ausgeführt werden und wie
+oft sie ausgeführt werden.
 
 ```python
 alter = int(input("Alter: "))
@@ -76,17 +76,17 @@ else:
 
 | Schritt | Frage | Beispiel |
 |---|---|---|
-| Eingabe | Welche Daten brauche ich? | Alter, Laenge, Breite |
-| Verarbeitung | Was wird berechnet oder entschieden? | Preis, Flaeche |
+| Eingabe | Welche Daten brauche ich? | Alter, Länge, Breite |
+| Verarbeitung | Was wird berechnet oder entschieden? | Preis, Fläche |
 | Ausgabe | Was soll sichtbar werden? | Ergebnistext |
 
 ## Verbindung zum Abitur
 
-BPE 5 liefert die Sprache, in der spaetere Aufgaben geloest werden. Besonders
+BPE 5 liefert die Sprache, in der spätere Aufgaben gelöst werden. Besonders
 wichtig sind:
 
 - Code lesen
-- Ablaufe mit Schreibtischtest nachvollziehen
+- Abläufe mit Schreibtischtest nachvollziehen
 - Bedingungen sauber formulieren
-- Schleifen sicher begruenden
-- Struktogramme in Code uebertragen und umgekehrt
+- Schleifen sicher begründen
+- Struktogramme in Code übertragen und umgekehrt

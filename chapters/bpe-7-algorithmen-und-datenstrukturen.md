@@ -14,9 +14,9 @@ werden nicht noch einmal als getrennte Parallelkapitel angelegt.
 
 ## Warum diese BPE wichtig ist
 
-In der J2 geht es staerker darum, Programme und Daten nicht nur zu schreiben,
+In der J2 geht es stärker darum, Programme und Daten nicht nur zu schreiben,
 sondern auch strukturiert zu analysieren. Du vergleichst Algorithmen,
-beschreibst Datenstrukturen und begruendest, welche Loesung zu welchem Problem
+beschreibst Datenstrukturen und begründest, welche Lösung zu welchem Problem
 passt.
 
 ## Lernziele
@@ -27,10 +27,10 @@ Nach dieser BPE kannst du:
 - per Index auf Werte zugreifen
 - Listen mit Schleifen durchlaufen
 - typische Array-Algorithmen entwerfen
-- Bubble Sort und Selection Sort erklaeren
-- lineare und binaere Suche unterscheiden
+- Bubble Sort und Selection Sort erklären
+- lineare und binäre Suche unterscheiden
 - verkettete Listen, Stack, Queue und Baum beschreiben
-- Datenstrukturen fuer Problemsituationen auswaehlen
+- Datenstrukturen für Problemsituationen auswählen
 
 ## Kapitelweg innerhalb der BPE
 
@@ -47,7 +47,7 @@ print(len(temperaturen))
 ### 7.2 Sortieren und Suchen
 
 Such- und Sortieralgorithmen zeigen, wie systematische Schrittfolgen Probleme
-loesen.
+lösen.
 
 ```python
 werte = [31, 42, 28, 55]
@@ -60,16 +60,16 @@ for wert in werte:
 
 ### 7.3 Dynamische Datenstrukturen
 
-Verkettete Listen, Stacks, Queues und Baeume werden beschrieben und modelliert.
+Verkettete Listen, Stacks, Queues und Bäume werden beschrieben und modelliert.
 Hier steht besonders das Verstehen des Aufbaus im Vordergrund.
 
 ## Verbindung zum Abitur
 
-BPE 7 ist fuer Pruefungsaufgaben besonders ergiebig:
+BPE 7 ist für Prüfungsaufgaben besonders ergiebig:
 
-- Algorithmen von Hand ausfuehren
-- Zwischenstaende notieren
-- Schreibtischtests durchfuehren
+- Algorithmen von Hand ausführen
+- Zwischenstände notieren
+- Schreibtischtests durchführen
 - Datenstrukturen skizzieren
-- Vor- und Nachteile begruenden
-- passende Modellierung fuer eine Situation waehlen
+- Vor- und Nachteile begründen
+- passende Modellierung für eine Situation wählen

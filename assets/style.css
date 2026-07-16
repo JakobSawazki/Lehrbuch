@@ -26,6 +26,7 @@
   --text: #26303a;
   --code-bg: #262f3b;
   --max-breite: 950px;
+  --lese-breite: 76ch;   /* angenehme Zeilenlaenge fuer Fliesstext (ca. 65-80 Zeichen) */
 }
 
 * { box-sizing: border-box; }
@@ -611,6 +612,20 @@ pre.code .tok-com  { color: #8b98a8; font-style: italic; }/* Kommentare */
 pre.code .tok-num  { color: #82cfff; }                    /* Zahlen */
 pre.code .tok-fn   { color: #ffd43b; }                    /* Funktionen */
 pre.code .tok-bool { color: #c792ea; font-weight: 600; }  /* True/False */
+
+pre.code[data-lang="sql"] {
+  border-left: 5px solid #30a46c;
+}
+
+pre.code[data-lang="sql"]::before {
+  content: "SQL";
+  display: block;
+  margin-bottom: .35rem;
+  color: #7fd1ae;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
 
 code {
   background: #eef1f5;
@@ -1267,6 +1282,7 @@ details.hinweis summary {
   border-radius: 8px;
   background: #fff;
   padding: .85rem 1rem;
+  min-width: 0;
 }
 
 .befehl-card:nth-child(3n + 2) { border-left-color: var(--gruen); }
@@ -1606,6 +1622,353 @@ footer.fuss p { margin: .3rem 0; }
 .queue .element.vorn { background: var(--gelb-hell); border-color: #e3b800; font-weight: 600; }
 .queue .q-label { font-size: .8rem; color: var(--grau); font-weight: 600; }
 
+/* ---------- Relationale Datenbanken ---------- */
+
+.db-weg {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .65rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.db-weg .db-schritt {
+  position: relative;
+  min-height: 7rem;
+  padding: .8rem;
+  border: 1px solid var(--rand);
+  border-top: 5px solid var(--blau);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.db-weg .db-schritt:nth-child(2) { border-top-color: var(--gruen); }
+.db-weg .db-schritt:nth-child(3) { border-top-color: #d2aa00; }
+.db-weg .db-schritt:nth-child(4) { border-top-color: #7b61a8; }
+.db-weg .db-schritt:nth-child(5) { border-top-color: var(--grau); }
+.db-weg strong { display: block; margin-bottom: .25rem; color: var(--blau-dunkel); }
+.db-weg span { font-size: .86rem; color: var(--grau); }
+
+.er-modell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 10rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin: 1.2rem 0;
+  padding: 1rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: var(--grau-hell);
+}
+
+.er-entitaet {
+  overflow: hidden;
+  border: 2px solid var(--blau);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 5px 14px rgba(26, 73, 113, .08);
+}
+
+.er-entitaet h4 {
+  margin: 0;
+  padding: .55rem .7rem;
+  background: var(--blau);
+  color: #fff;
+  text-align: center;
+}
+
+.er-entitaet ul { margin: 0; padding: .55rem .75rem .65rem 1.8rem; }
+.er-entitaet li { margin: .18rem 0; }
+
+.er-beziehung {
+  position: relative;
+  padding: .65rem .45rem;
+  border: 2px solid var(--gruen);
+  border-radius: 8px;
+  background: var(--gruen-hell);
+  text-align: center;
+  font-weight: 700;
+  color: #17633f;
+}
+
+.er-beziehung::before,
+.er-beziehung::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 1rem;
+  border-top: 2px solid var(--grau);
+}
+
+.er-beziehung::before { right: 100%; }
+.er-beziehung::after { left: 100%; }
+.er-kardinalitaet { display: block; margin-top: .25rem; font-size: .84rem; color: var(--text); }
+
+.schema-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+
+.schema-card {
+  overflow: hidden;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.schema-card h4 {
+  margin: 0;
+  padding: .55rem .75rem;
+  background: var(--blau-dunkel);
+  color: #fff;
+}
+
+.schema-zeile {
+  display: grid;
+  grid-template-columns: 2.3rem minmax(0, 1fr) auto;
+  gap: .4rem;
+  align-items: center;
+  min-height: 2.2rem;
+  padding: .35rem .55rem;
+  border-top: 1px solid var(--rand);
+  font-size: .86rem;
+}
+
+.schema-zeile code { white-space: normal; }
+.schema-typ { color: var(--grau); font-size: .78rem; }
+
+.schluessel {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  min-height: 1.45rem;
+  border-radius: 5px;
+  font-size: .68rem;
+  font-weight: 800;
+}
+
+.schluessel.pk { background: var(--gelb-hell); color: #715900; }
+.schluessel.fk { background: var(--gruen-hell); color: #17633f; }
+.schluessel.neutral { color: #8a96a3; }
+
+.normalform-weg {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+  margin: 1rem 0;
+}
+
+.normalform-weg > div {
+  padding: .75rem .85rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.normalform-weg strong { display: block; color: var(--blau-dunkel); }
+.normalform-weg span { display: block; margin-top: .2rem; font-size: .86rem; }
+
+.daten-ampel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+  margin: 1rem 0;
+}
+
+.daten-ampel > div {
+  padding: .8rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.daten-ampel > div:nth-child(1) { border-top: 5px solid var(--gruen); }
+.daten-ampel > div:nth-child(2) { border-top: 5px solid #d2aa00; }
+.daten-ampel > div:nth-child(3) { border-top: 5px solid var(--rot); }
+.daten-ampel strong { display: block; margin-bottom: .3rem; }
+
+@media (max-width: 820px) {
+  .db-weg { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .schema-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 650px) {
+  .db-weg,
+  .normalform-weg,
+  .daten-ampel { grid-template-columns: 1fr; }
+
+  .er-modell { grid-template-columns: 1fr; }
+  .er-beziehung::before,
+  .er-beziehung::after { display: none; }
+}
+
+/* ---------- Gesellschaftliche Aspekte und Graphen ---------- */
+
+.algo-weg {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .75rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.algo-schritt {
+  min-height: 7rem;
+  padding: .8rem;
+  border: 1px solid var(--rand);
+  border-top: 5px solid var(--blau);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.algo-schritt:nth-child(2) { border-top-color: var(--gruen); }
+.algo-schritt:nth-child(3) { border-top-color: #d2aa00; }
+.algo-schritt:nth-child(4) { border-top-color: #7b61a8; }
+.algo-schritt strong { display: block; margin-bottom: .25rem; color: var(--blau-dunkel); }
+.algo-schritt span { color: var(--grau); font-size: .86rem; }
+
+.entscheidung-fluss {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: .45rem;
+  align-items: center;
+  justify-content: start;
+  margin: 1.1rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: var(--grau-hell);
+}
+
+.entscheidung-fluss .station {
+  min-width: 8.5rem;
+  padding: .65rem .75rem;
+  border: 2px solid var(--blau);
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+  font-weight: 700;
+  color: var(--blau-dunkel);
+}
+
+.entscheidung-fluss .pfeil { color: var(--grau); font-size: 1.35rem; }
+
+.graph-visual {
+  margin: 1.2rem 0;
+  padding: .8rem;
+  overflow: hidden;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.graph-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 31rem;
+}
+
+.graph-kante { stroke: #6f7d89; stroke-width: 4; }
+.graph-kante.gerichtet { marker-end: url(#pfeilspitze); }
+.graph-kante.hervor { stroke: var(--gruen); stroke-width: 7; }
+.graph-knoten { fill: var(--blau); stroke: #fff; stroke-width: 4; }
+.graph-knoten.start { fill: var(--gruen); }
+.graph-knoten.ziel { fill: #7b61a8; }
+.graph-label { fill: #fff; font: 700 22px Arial, sans-serif; text-anchor: middle; dominant-baseline: central; }
+.graph-gewicht { fill: var(--text); font: 700 17px Arial, sans-serif; paint-order: stroke; stroke: #fff; stroke-width: 5; stroke-linejoin: round; }
+
+.graph-legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem 1rem;
+  margin: .7rem 0 0;
+  color: var(--grau);
+  font-size: .85rem;
+}
+
+.graph-legende span { display: inline-flex; gap: .35rem; align-items: center; }
+.leg-knoten, .leg-start, .leg-ziel {
+  width: .9rem;
+  height: .9rem;
+  border-radius: 50%;
+  background: var(--blau);
+}
+.leg-start { background: var(--gruen); }
+.leg-ziel { background: #7b61a8; }
+.leg-kante { width: 1.4rem; border-top: 3px solid #6f7d89; }
+
+.begriff-kacheln {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+
+.begriff-kacheln > div {
+  padding: .75rem .85rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.begriff-kacheln strong { display: block; color: var(--blau-dunkel); }
+.begriff-kacheln span { display: block; margin-top: .2rem; font-size: .88rem; }
+
+.bewertungsraster {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+
+.bewertungspunkt {
+  min-height: 8rem;
+  padding: .8rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.bewertungspunkt strong { display: block; margin-bottom: .25rem; color: var(--blau-dunkel); }
+.bewertungspunkt span { font-size: .88rem; }
+
+.fallvergleich {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem;
+  margin: 1rem 0;
+}
+
+.fallkarte {
+  padding: .9rem;
+  border: 1px solid var(--rand);
+  border-left: 5px solid var(--blau);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.fallkarte:nth-child(2n) { border-left-color: var(--gruen); }
+.fallkarte h4 { margin: 0 0 .35rem; color: var(--blau-dunkel); }
+
+@media (max-width: 820px) {
+  .algo-weg,
+  .begriff-kacheln,
+  .bewertungsraster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 650px) {
+  .algo-weg,
+  .begriff-kacheln,
+  .bewertungsraster,
+  .fallvergleich { grid-template-columns: 1fr; }
+
+  .graph-visual { padding: .35rem; }
+  .graph-label { font-size: 26px; }
+  .graph-gewicht { font-size: 21px; }
+}
+
 /* ---------- Kara-Simulator ---------- */
 
 :root { --kara-feld: 46px; }
@@ -1739,6 +2102,48 @@ footer.fuss p { margin: .3rem 0; }
 @media print {
   .kara-sim { display: none; }
 }
+
+/* ---------- Lesbarkeit (Lehrbuch-Typografie) ---------- */
+
+/* Fliesstext auf Buchbreite begrenzen - Tabellen, Code, Grafiken und
+   Vergleichsspalten behalten bewusst die volle Inhaltsbreite. */
+main > p,
+main > ul,
+main > ol,
+main > .box,
+main > .quiz {
+  max-width: var(--lese-breite);
+}
+
+.uebung-inhalt > p,
+.uebung-inhalt > ul,
+.uebung-inhalt > ol,
+.loesung-inhalt > p,
+.loesung-inhalt > ul,
+.loesung-inhalt > ol {
+  max-width: var(--lese-breite);
+}
+
+/* Etwas luftigere Zeilen im Fliesstext */
+main p,
+main li {
+  line-height: 1.7;
+}
+
+/* Deutsche Silbentrennung fuer lange Komposita */
+main p,
+main li,
+main td {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Schoenere Umbrueche (progressive enhancement, aeltere Browser ignorieren es) */
+main p { text-wrap: pretty; }
+h1, h2, h3, .untertitel { text-wrap: balance; }
+
+/* Keine Silbentrennung, wo sie stoert */
+code, pre, .topnav, .kapitel-toc, .seiten-nav { hyphens: none; }
 
 /* ---------- Druck ---------- */
 

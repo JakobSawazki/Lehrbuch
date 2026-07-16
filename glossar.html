@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Glossar und Python-Befehle · Lehrbuch</title>
-<link rel="icon" type="image/png" href="assets/lehrbuch-favicon.png?v=2.1">
-<link rel="apple-touch-icon" href="assets/lehrbuch-apple-touch.png?v=2.1">
-<link rel="stylesheet" href="assets/style.css?v=2.1">
+<link rel="icon" type="image/png" href="assets/lehrbuch-favicon.png?v=2.4.1">
+<link rel="apple-touch-icon" href="assets/lehrbuch-apple-touch.png?v=2.4.1">
+<link rel="stylesheet" href="assets/style.css?v=2.4.1">
 </head>
 <body>
 
@@ -19,9 +19,11 @@
     <a href="kapitel-1-kara.html">BPE5 K1</a>
     <a href="kapitel-2-python-grundlagen.html">BPE5 K2</a>
     <a href="kapitel-3-kontrollstrukturen.html">BPE5 K3</a>
+    <a href="bpe-6-relationale-datenbanken.html">BPE6 DB</a>
     <a href="kapitel-4-arrays.html">BPE7 K4</a>
     <a href="kapitel-5-sortieren-suchen.html">BPE7 K5</a>
     <a href="kapitel-6-datenstrukturen.html">BPE7 K6</a>
+    <a href="bpe-8-gesellschaftliche-aspekte.html">BPE8</a>
     <a href="glossar.html" class="aktiv">Glossar</a>
     <a href="referenz.html">Spickzettel</a>
     <a href="checklisten.html">Checklisten</a>
@@ -31,10 +33,10 @@
 <header class="seitenkopf">
   <div class="kopf-inner">
     <p class="dachzeile">Begriffe · Syntax · Mini-Beispiele</p>
-    <h1>Glossar und Python-Befehlsübersicht</h1>
+    <h1>Glossar und Befehlsübersicht</h1>
     <p class="untertitel">
       Kurze Erklärungen zu wichtigen Begriffen und eine übersichtliche Sammlung der
-      Python-Bausteine, die im Lehrbuch vorkommen.
+      Python- und SQL-Bausteine, die im Lehrbuch vorkommen.
     </p>
   </div>
 </header>
@@ -47,6 +49,8 @@
     <li><a href="#glossar">Glossar wichtiger Begriffe</a></li>
     <li><a href="#befehle">Python-Befehle und Schlüsselwörter</a></li>
     <li><a href="#array-befehle">Arrays, Suchen und Sortieren</a></li>
+    <li><a href="#datenbankbegriffe">Datenbankbegriffe und SQL (BPE 6)</a></li>
+    <li><a href="#graphbegriffe">Graphen und gesellschaftliche Begriffe (BPE 8)</a></li>
     <li><a href="#kara-befehle">PythonKara-Befehle</a></li>
     <li><a href="#tkinter">Tkinter-Grundbausteine</a></li>
     <li><a href="#operatoren">Operatoren im Überblick</a></li>
@@ -587,6 +591,144 @@ vorn = queue.pop(0) # dequeue</pre>
 </div>
 
 <!-- ============================================================ -->
+<h2 id="datenbankbegriffe">Datenbankbegriffe und SQL (BPE 6)</h2>
+
+<div class="glossar-grid">
+  <div class="glossar-eintrag">
+    <h3>Datenbank</h3>
+    <p>Strukturierte Sammlung zusammengehöriger Daten, die dauerhaft gespeichert und gezielt ausgewertet werden kann.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Datenbankmanagementsystem (DBMS)</h3>
+    <p>Software zum Erstellen, Speichern, Prüfen und Abfragen von Datenbanken, zum Beispiel MySQL.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Entität und Entitätstyp</h3>
+    <p>Eine Entität ist ein konkretes Objekt wie das Buch mit der ID 17. Der Entitätstyp beschreibt die gemeinsame Art, hier <code>BUCH</code>.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Attribut</h3>
+    <p>Eigenschaft eines Entitätstyps, zum Beispiel <code>titel</code> oder <code>erscheinungsjahr</code> bei einem Buch.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Beziehung und Kardinalität</h3>
+    <p>Eine Beziehung verbindet Entitätstypen. Die Kardinalität beschreibt mit 1 und n, wie viele Objekte beteiligt sein können.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Relation</h3>
+    <p>Tabelle im relationalen Modell. Eine Zeile entspricht einem Datensatz, eine Spalte einem Attribut.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Primärschlüssel</h3>
+    <p>Attribut oder Attributkombination, die jeden Datensatz eindeutig identifiziert.</p>
+    <p class="beispiel"><code>person_id</code></p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Fremdschlüssel</h3>
+    <p>Attribut, das auf den Primärschlüssel einer anderen Relation verweist und so Tabellen verbindet.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Redundanz</h3>
+    <p>Unnötige Mehrfachspeicherung derselben Information. Sie verbraucht Platz und kann zu widersprüchlichen Daten führen.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Dritte Normalform (3NF)</h3>
+    <p>Ziel einer sinnvollen Tabellenstruktur: Jedes Nichtschlüsselattribut hängt vom Schlüssel, vom ganzen Schlüssel und von nichts anderem ab.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Datenkonsistenz</h3>
+    <p>Daten sind vollständig, widerspruchsfrei und entsprechen den vereinbarten Regeln.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Referentielle Integrität</h3>
+    <p>Ein Fremdschlüssel darf nur auf einen vorhandenen Datensatz verweisen oder – falls erlaubt – leer sein.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>SQL</h3>
+    <p>Structured Query Language: Sprache zum Definieren, Verändern und Abfragen relationaler Datenbanken.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>JOIN</h3>
+    <p>Verknüpft Datensätze aus mehreren Tabellen über zusammengehörige Schlüssel.</p>
+  </div>
+</div>
+
+<h3 id="sql-befehle">Wichtige SQL-Bausteine</h3>
+<div class="befehl-grid">
+  <div class="befehl-card"><h3><code>CREATE TABLE</code></h3><p>Legt eine Tabelle samt Spalten und Regeln an.</p><pre class="code" data-lang="sql">CREATE TABLE fach (
+    fach_id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);</pre></div>
+  <div class="befehl-card"><h3><code>INSERT INTO</code></h3><p>Fügt einen Datensatz ein.</p><pre class="code" data-lang="sql">INSERT INTO fach (fach_id, name)
+VALUES (1, 'Informatik');</pre></div>
+  <div class="befehl-card"><h3><code>SELECT ... WHERE</code></h3><p>Wählt Daten aus und grenzt Treffer ein.</p><pre class="code" data-lang="sql">SELECT name
+FROM fach
+WHERE fach_id = 1;</pre></div>
+  <div class="befehl-card"><h3><code>JOIN ... ON</code></h3><p>Verbindet mehrere Tabellen über passende Schlüssel.</p><pre class="code" data-lang="sql">SELECT person.name, ausleihe.buch_id
+FROM ausleihe
+JOIN person
+  ON ausleihe.person_id = person.person_id;</pre></div>
+</div>
+
+<p><a href="referenz.html#sql">Zur kompakten SQL-Referenz →</a></p>
+
+<!-- ============================================================ -->
+<h2 id="graphbegriffe">Graphen und gesellschaftliche Begriffe (BPE 8)</h2>
+
+<div class="glossar-grid">
+  <div class="glossar-eintrag">
+    <h3>Algorithmische Vorauswahl</h3>
+    <p>Ein Algorithmus entscheidet anhand von Daten und Regeln, welche Informationen zuerst oder überhaupt angezeigt werden.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Filterblase</h3>
+    <p>Ein eingeschränkter Informationsraum, der entstehen kann, wenn Empfehlungssysteme überwiegend Inhalte zeigen, die zu bisherigen Interessen passen.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Graph</h3>
+    <p>Ein Modell aus Knoten und Kanten. Damit lassen sich zum Beispiel Freundschaften, Verkehrsverbindungen oder Abhängigkeiten darstellen.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Knoten</h3>
+    <p>Ein Objekt in einem Graphen, etwa eine Person, ein Bahnhof oder eine Internetseite.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Kante</h3>
+    <p>Eine Verbindung zwischen zwei Knoten. Sie kann gerichtet und mit einem Wert gewichtet sein.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Grad eines Knotens</h3>
+    <p>Anzahl der Kanten, die an einem Knoten anliegen. Bei gerichteten Graphen unterscheidet man Eingangs- und Ausgangsgrad.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Gerichteter Graph</h3>
+    <p>Graph, dessen Kanten eine Richtung besitzen. Ein Folgen auf einer Plattform muss zum Beispiel nicht gegenseitig sein.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Gewichteter Graph</h3>
+    <p>Graph, dessen Kanten Werte tragen, etwa Entfernungen, Fahrzeiten oder Kosten.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Weg und Kreis</h3>
+    <p>Ein Weg verbindet eine Folge von Knoten über Kanten. Endet ein Weg wieder am Startknoten, bildet er einen Kreis.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Transparenz</h3>
+    <p>Nachvollziehbarkeit der Daten, Regeln und Gründe, die zu einer algorithmischen Auswahl oder Entscheidung führen.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Fairness und Wertneutralität</h3>
+    <p>Algorithmen sind nicht automatisch neutral: Daten, Ziele und Gewichtungen können einzelne Gruppen bevorzugen oder benachteiligen.</p>
+  </div>
+  <div class="glossar-eintrag">
+    <h3>Kontrollmöglichkeit</h3>
+    <p>Möglichkeit, eine algorithmische Entscheidung zu prüfen, zu korrigieren oder durch einen Menschen überprüfen zu lassen.</p>
+  </div>
+</div>
+
+<p><a href="bpe-8-gesellschaftliche-aspekte.html">Zum vollständigen BPE-8-Kapitel →</a></p>
+
+<!-- ============================================================ -->
 <h2 id="kara-befehle">PythonKara-Befehle</h2>
 
 <p>
@@ -655,10 +797,10 @@ vorn = queue.pop(0) # dequeue</pre>
 
 <footer class="fuss">
   <div class="fuss-inner">
-    <p>Lehrbuch zur BPE 5 und BPE 7 · Glossar</p>
+    <p>Lehrbuch zu BPE 5, BPE 6, BPE 7 und BPE 8 · Glossar</p>
   </div>
 </footer>
 
-<script src="assets/lehrbuch.js?v=2.1"></script>
+<script src="assets/lehrbuch.js?v=2.4.1"></script>
 </body>
 </html>

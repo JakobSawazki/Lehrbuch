@@ -11,7 +11,7 @@ Tabellenkalkulation ist oft der erste Ort, an dem Daten wirklich systematisch
 verarbeitet werden. Du gibst Werte ein, nutzt Formeln, kopierst Berechnungen,
 wertest Daten aus und machst Ergebnisse sichtbar.
 
-Spaeter in Python begegnet dir dieselbe Denkweise wieder:
+Später in Python begegnet dir dieselbe Denkweise wieder:
 
 - Eine Spalte mit Werten erinnert an eine Liste.
 - Eine Formel erinnert an eine Anweisung.
@@ -23,14 +23,14 @@ Spaeter in Python begegnet dir dieselbe Denkweise wieder:
 Nach dieser BPE kannst du:
 
 - Daten und Formeln in Tabellen eingeben
-- Datentypen wie Text, Zahl, Waehrung und Datum unterscheiden
+- Datentypen wie Text, Zahl, Währung und Datum unterscheiden
 - Tabellen sinnvoll formatieren
-- relative und absolute Zellbezuege verwenden
+- relative und absolute Zellbezüge verwenden
 - Funktionen wie Summe, Mittelwert, Minimum und Maximum anwenden
 - Bedingungen mit `WENN` auswerten
 - Daten in passenden Diagrammen darstellen
 
-## Leitbeispiel: Notenuebersicht
+## Leitbeispiel: Notenübersicht
 
 Eine Tabelle speichert mehrere Klassenarbeiten. Daraus sollen Durchschnitt,
 beste Note und schlechteste Note berechnet werden.
@@ -42,13 +42,13 @@ Leitfragen:
 - Welche Ergebnisse sollen sichtbar werden?
 - Welche Diagrammform passt zur Aussage?
 
-## Bruecke zu Python
+## Brücke zu Python
 
-Wenn du spaeter eine Liste wie diese siehst:
+Wenn du später eine Liste wie diese siehst:
 
 ```python
 noten = [2, 3, 1, 4, 2]
 ```
 
-dann steckt eine aehnliche Idee dahinter wie bei einer Tabellenspalte: mehrere
-gleichartige Werte werden geordnet gespeichert und koennen ausgewertet werden.
+dann steckt eine ähnliche Idee dahinter wie bei einer Tabellenspalte: mehrere
+gleichartige Werte werden geordnet gespeichert und können ausgewertet werden.

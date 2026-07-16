@@ -1,23 +1,23 @@
-# Uebungen zu BPE 7: Algorithmen und Datenstrukturen
+# Übungen zu BPE 7: Algorithmen und Datenstrukturen
 
-## Uebung 1: Listen auswerten
+## Übung 1: Listen auswerten
 
 Berechne Summe, Durchschnitt, Minimum und Maximum einer Liste.
 
-## Uebung 2: Indexfehler finden
+## Übung 2: Indexfehler finden
 
-Erklaere, warum ein bestimmter Zugriff auf eine Liste zu einem Fehler fuehrt.
+Erkläre, warum ein bestimmter Zugriff auf eine Liste zu einem Fehler führt.
 
-## Uebung 3: Bubble Sort von Hand
+## Übung 3: Bubble Sort von Hand
 
 Sortiere eine kurze Zahlenliste und notiere jeden Vergleich und jeden Tausch.
 
-## Uebung 4: Binaere Suche nachverfolgen
+## Übung 4: Binäre Suche nachverfolgen
 
-Fuehre die binaere Suche fuer einen vorhandenen und einen nicht vorhandenen Wert
+Führe die binäre Suche für einen vorhandenen und einen nicht vorhandenen Wert
 durch.
 
-## Uebung 5: Datenstruktur waehlen
+## Übung 5: Datenstruktur wählen
 
 Ordne Alltagssituationen einer Liste, einem Stack, einer Queue oder einem Baum
-zu und begruende deine Entscheidung.
+zu und begründe deine Entscheidung.

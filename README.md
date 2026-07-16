@@ -1,7 +1,7 @@
 # Lehrbuch
 
-Dieses Verzeichnis ist die Arbeitsquelle fuer ein schuelerfreundliches
-Informatik-Lehrbuch fuer das Berufliche Gymnasium Baden-Wuerttemberg.
+Dieses Verzeichnis ist die Arbeitsquelle für ein schülerfreundliches
+Informatik-Lehrbuch für das Berufliche Gymnasium Baden-Württemberg.
 
 Es deckt langfristig alle Bildungsplaneinheiten BPE 1 bis BPE 8 ab:
 Tabellenkalkulation, Webseiten, Netze, Informationsdarstellung,
@@ -13,30 +13,32 @@ lautet **Lehrbuch**.
 
 ## Arbeitsprinzip
 
-- **Das Lehrbuch ist die einzige Projektquelle.** Der fruehere Stand unter
-  `D:\Google Drive\Codex\PythonWorkbook` wurde vollstaendig abgeglichen und am
+- **Das Lehrbuch ist die einzige Projektquelle.** Der frühere Stand unter
+  `D:\Google Drive\Codex\PythonWorkbook` wurde vollständig abgeglichen und am
   2026-07-16 in dieses Projekt konsolidiert.
-- **Die acht BPE-Dateien bilden die Buchgliederung.** In `chapters/` liegt fuer
-  jede Bildungsplaneinheit genau ein uebergeordnetes Kapitel.
-- **Die HTML-Lesefassung ist die ausgearbeitete Web-Ausgabe.** Die sechs
-  HTML-Lektionen vertiefen derzeit BPE 5 und BPE 7. Sie sind Unterkapitel der
-  jeweiligen BPE und keine zweite BPE-Gliederung.
+- **Die acht BPE-Dateien bilden die Buchgliederung.** In `chapters/` liegt für
+  jede Bildungsplaneinheit genau ein übergeordnetes Kapitel.
+- **Die HTML-Lesefassung ist die ausgearbeitete Web-Ausgabe.** Acht
+  HTML-Lektionen vertiefen derzeit BPE 5 bis BPE 8. Die Kapitel 1 bis 6 sind
+  Unterkapitel zu BPE 5 und BPE 7; BPE 6 und BPE 8 besitzen jeweils eine
+  zusammenhängende HTML-Lesefassung. Die Markdown-Dateien bleiben die
+  übergeordnete BPE-Quelle.
 - **Neue Fachinhalte werden zuerst der passenden BPE zugeordnet.** Danach wird
-  entschieden, ob sie als Markdown-Quelltext, HTML-Lektion oder Uebung
+  entschieden, ob sie als Markdown-Quelltext, HTML-Lektion oder Übung
   umgesetzt werden. Eine parallele Kopie desselben Kapitels wird vermieden.
-- **Word und PDF sind Ausgabeformate.** Sie werden spaeter aus dem konsolidierten
+- **Word und PDF sind Ausgabeformate.** Sie werden später aus dem konsolidierten
   Lehrbuchbestand erzeugt.
-- **Loesungen werden vorsichtig behandelt.** Oeffentliche Schuelerfassung und
+- **Lösungen werden vorsichtig behandelt.** Öffentliche Schülerfassung und
   private Lehrkraftfassung sollten getrennt geplant werden.
 
-## Einstieg fuer Autorinnen und Autoren
+## Einstieg für Autorinnen und Autoren
 
 1. `book.md` lesen.
 2. `curriculum-map.md` lesen.
 3. Danach das passende Kapitel in `chapters/` bearbeiten.
 4. Neue Aufgaben in `exercises/` sammeln.
-5. Loesungen nur bewusst und mit Blick auf die Veroeffentlichung in
-   `solutions/` ergaenzen.
+5. Lösungen nur bewusst und mit Blick auf die Veröffentlichung in
+   `solutions/` ergänzen.
 
 ## Kapitelstruktur
 
@@ -56,15 +58,15 @@ beim Lesen immer klar ist, wo man sich im Bildungsplan befindet.
 
 ## Zielgruppe
 
-Schuelerinnen und Schueler der Eingangsklasse, Jahrgangsstufe 1 und
+Schülerinnen und Schüler der Eingangsklasse, Jahrgangsstufe 1 und
 Jahrgangsstufe 2 am Beruflichen Gymnasium. Der Schwerpunkt der ersten
 Ausbaustufe liegt auf **J1 und J2**, weil dort Programmierung,
 Datenbanken, Algorithmen und Datenstrukturen zentral sind.
 
 ## Projektort
 
-Dieses Lehrbuch ist seit 2026-07-07 ein eigenstaendiges Projekt und seit
-2026-07-16 zugleich der alleinige Nachfolger des frueheren Python-Workbooks:
+Dieses Lehrbuch ist seit 2026-07-07 ein eigenständiges Projekt und seit
+2026-07-16 zugleich der alleinige Nachfolger des früheren Python-Workbooks:
 
 `D:\Google Drive\Codex\Lehrbuch`
 
@@ -73,5 +75,5 @@ Dieses Lehrbuch ist seit 2026-07-07 ein eigenstaendiges Projekt und seit
 - GitHub: <https://github.com/JakobSawazki/Lehrbuch>
 - Web-Ausgabe: <https://jakobsawazki.github.io/Lehrbuch/>
 
-PythonLab und andere Projekte koennen spaeter darauf verlinken oder Inhalte
+PythonLab und andere Projekte können später darauf verlinken oder Inhalte
 daraus ableiten, aber die kanonische Quelle liegt hier.

@@ -8,7 +8,7 @@
 [3 Konventionen](#3-konventionen--wichtige-bausteine-gedächtnisstütze-für-ki-agenten) ·
 [4 Änderungsprotokoll](#4-änderungsprotokoll) ·
 [5 Offene Punkte](#5-offene-punkte--to-do) ·
-[6 Verifikation](#6-verifikation-stand-v21) ·
+[6 Verifikation](#6-verifikation-stand-v24) ·
 [7 Quellenrollen](#7-quellenrollen-und-konsolidierung)
 
 > ⚠️ **Regel für alle KI-Agenten (Claude, Codex, …):** Wer etwas am Lehrbuch ändert,
@@ -24,7 +24,7 @@
 |---|---|
 | **Ziel** | Übersichtliches, anschauliches Informatik-Lehrbuch für Schüler |
 | **Zielgruppe** | Informatik, Berufliches Gymnasium Baden-Württemberg, Eingangsklasse, Jahrgangsstufen 1 und 2 |
-| **Umfang (Zielstruktur)** | **BPE 1 bis BPE 8** in Bildungsplan-Reihenfolge; HTML-Lesefassung aktuell besonders für **BPE 5** und **BPE 7** ausgearbeitet |
+| **Umfang (Zielstruktur)** | **BPE 1 bis BPE 8** in Bildungsplan-Reihenfolge; HTML-Lesefassung aktuell für **BPE 5 bis BPE 8** ausgearbeitet |
 | **Anrede** | Kapitel, Spickzettel und Checklisten nutzen überwiegend **„Sie“** wie die offiziellen Materialien; Startseite, Inhaltsverzeichnis und Glossar sind schülernah mit **„du“** formuliert. Vollständige Vereinheitlichung ist ein offener Redaktionspunkt. |
 | **Sprache** | Deutsch |
 | **Technik** | Reines HTML/CSS/Vanilla-JS, **keine Frameworks, keine CDN-Abhängigkeiten** – muss komplett **offline** funktionieren (Doppelklick auf `index.html` genügt) |
@@ -46,6 +46,16 @@
 - **Materialien zur BPE 7** (Landesbildungsserver BW):
   `D:\Google Drive\Codex\PythonLab\resources\bpe-7-algorithmen-datenstrukturen-python`
   (Lernfortschritt 1 = Datenstrukturen/Arrays, Lernfortschritt 2 = Algorithmik: Bubble/Selection Sort + lineare/binäre Suche, Lernfortschritt 3 = verkettete Liste/Stack/Queue/Baum; jeweils Informationsmaterial / Arbeitsaufträge / Lösungen inkl. `.py`-Programme + Ich-Kann-Listen + Kompetenzraster)
+- **Materialien zur BPE 8** (Landesbildungsserver BW):
+  `D:\Google Drive\Codex\PythonLab\resources\bpe-8-gesellschaftliche-aspekte`
+  (Lernfortschritt 1 = Einfluss von Algorithmen im Alltag und optionale KI-Vertiefung;
+  Lernfortschritt 2 = Graphgrundlagen, Modellierung, kürzeste Wege und KI-Bezüge;
+  Lernfortschritt 3 = Chancen und Risiken; jeweils Arbeitsaufträge, Lösungen,
+  Ich-Kann-Liste und Kompetenzraster)
+- **BPE 6:** Der fachliche Ausbau folgt direkt dem Bildungsplan S. 15–16.
+  Im lokalen Ressourcenbestand wurde am 2026-07-16 kein separates offizielles
+  BPE-6-Materialpaket gefunden; Beispiele und Übungen wurden daher eigenständig
+  und lehrplangetreu entwickelt.
 - **PythonKara** (SwissEduc):
   <https://www.swisseduc.ch/informatik/karatojava/pythonkara/>
   (offizielle Seite für Download und lokale Ausführung von PythonKara; im Lehrbuch bei Kapitel 1, Glossar, Spickzettel und Werkzeugübersicht verlinkt)
@@ -68,9 +78,11 @@ Lehrbuch/
 ├── kapitel-1-kara.html               BPE 5: Kara und Struktogramme
 ├── kapitel-2-python-grundlagen.html  BPE 5: Python-Grundlagen
 ├── kapitel-3-kontrollstrukturen.html BPE 5: Kontrollstrukturen
+├── bpe-6-relationale-datenbanken.html BPE 6: vollständige Datenbank-Lesefassung
 ├── kapitel-4-arrays.html             BPE 7: Arrays
 ├── kapitel-5-sortieren-suchen.html   BPE 7: Sortieren und Suchen
 ├── kapitel-6-datenstrukturen.html    BPE 7: dynamische Datenstrukturen
+├── bpe-8-gesellschaftliche-aspekte.html BPE 8: vollständige Abschluss-Lesefassung
 ├── glossar.html                      Glossar und Befehlsübersicht
 ├── referenz.html                     Spickzettel
 ├── checklisten.html                  interaktive Ich-kann-Checklisten
@@ -84,8 +96,10 @@ Lehrbuch/
     └── lehrbuch-apple-touch.png      Touch-Icon
 ```
 
-Die sechs HTML-Lektionen sind fachliche Unterkapitel von BPE 5 und BPE 7. Die
-acht Dateien in `chapters/` bilden dagegen die einmalige BPE-Hauptebene. Neue
+Die acht HTML-Lektionen vertiefen BPE 5 bis BPE 8. Die sechs nummerierten
+Kapitel sind fachliche Unterkapitel von BPE 5 und BPE 7; BPE 6 und BPE 8
+liegen als zusammenhängende HTML-Lesefassungen vor. Die acht Dateien in `chapters/`
+bilden dagegen die einmalige BPE-Hauptebene. Neue
 Inhalte werden einer dieser Ebenen zugeordnet und nicht als Parallelfassung
 angelegt.
 
@@ -102,7 +116,7 @@ angelegt.
 | Merke | `<div class="box box-merke">` | 📌 Kernaussagen (gelb) |
 | Achtung | `<div class="box box-achtung">` | ⚠️ typische Stolperfallen (rot) |
 | Tipp/Ausprobieren | `<div class="box box-tipp">` | 💡 Experimentier-Aufträge (grün) |
-| Code | `<pre class="code">` | wird von `lehrbuch.js` automatisch Python-gehighlightet |
+| Code | `<pre class="code">` | wird von `lehrbuch.js` automatisch als Python hervorgehoben; SQL mit `data-lang="sql"` |
 | Konsolen-Ausgabe | `<pre class="output">` | Benutzereingaben darin: `<span class="eingabe">`, Fehler: `<span class="fehler">` |
 | Übungsaufgabe | `<div class="uebung">` mit `.uebung-kopf` + `.uebung-inhalt` | Lösung als `<details class="loesung">` (aufklappbar) |
 | Quiz | `<div class="quiz" data-erklaerung="…">` | Antworten als `<button class="antwort">`, richtige mit `data-richtig` |
@@ -112,6 +126,10 @@ angelegt.
 | Verkettete Liste | `<div class="vkette">` mit `.anker`, `.knoten` (`.daten` + `.zeiger`), `.pfeil`, `.nullm` | Kapitel 6 |
 | Stack / Queue | `.stapel-wrap`/`.stapel` bzw. `.queue` mit `.element` | LIFO/FIFO-Grafiken (Kapitel 6) |
 | Bäume | Inline-SVG direkt in `kapitel-6-datenstrukturen.html` | Wurzel gelb, innere Knoten blau, Blätter grün |
+| Datenbankmodelle | `.er-modell`, `.schema-grid`, `.normalform-weg`, `.daten-ampel` | BPE 6: ER-Modell, Relationen, Normalisierung und Datenbewertung |
+| Algorithmus-Wirkung | `.algo-weg`, `.entscheidung-fluss` | BPE 8: Daten, Regeln, Ergebnis und gesellschaftliche Wirkung |
+| Graphmodelle | `.graph-visual`, `.graph-knoten`, `.graph-kante`, `.graph-gewicht` | BPE 8: Netzwerke und gewichtete Wege als responsive SVG-Grafiken |
+| Beurteilung | `.bewertungsraster`, `.fallvergleich` | BPE 8: Kriterienraster und Fallvergleiche |
 
 ### Struktogramme (Nassi-Shneiderman, reines CSS)
 
@@ -154,21 +172,35 @@ Neue Zeilen tragen das Datum **mit Uhrzeit** im Format `JJJJ-MM-TT HH:MM`
 | 07.07.2026 | 2.0 | Codex | Lehrbuch aus PythonLab herausgeloest und als eigenstaendiges Projekt nach `D:\Google Drive\Codex\Lehrbuch` verschoben. Markdown-Quelle konsequent nach BPE 1 bis BPE 8 strukturiert (`chapters/bpe-1-...` bis `bpe-8-...`). HTML-Startseite um BPE-1-bis-BPE-8-Uebersicht erweitert, Navigation auf BPE5/BPE7-Kapitelbezeichnungen angepasst, Ruecklink zeigt nun auf `../PythonLab/`. PythonLab verlinkt ueber den Reiter `Lehrbuch` auf `../Lehrbuch/`. |
 | 2026-07-16 08:14 | 2.1 | Codex | Standalone-Projekt `PythonWorkbook` vollständig mit dem Lehrbuch verglichen: sämtliche Inhalte waren bereits enthalten, die Lehrbuchfassungen waren die neueren bzw. erweiterten Varianten. Das Lehrbuch als einzige Quelle festgelegt, Rollen von BPE-Markdown und HTML-Unterkapiteln dokumentiert, Assets von `workbook-*` auf `lehrbuch-*` umbenannt, Cache-Versionen auf `2.1` vereinheitlicht und den veralteten Doppelordner nach der Verifikation entfernt. |
 | 2026-07-16 08:26 | 2.1 | Codex | Eigenständiges öffentliches GitHub-Repository `JakobSawazki/Lehrbuch` erstellt und erfolgreich über GitHub Pages veröffentlicht. Private Memory-, Ideen-, Ressourcen- und Implementierungsdateien bleiben per `.gitignore` ausgeschlossen. |
+| 2026-07-16 08:51 | 2.2 | Codex | **BPE 6 „Relationale Datenbanken“ vollständig als HTML-Lesefassung ausgebaut:** Lehrpfad vom ER-Modell über Relationen, Schlüssel und 3. Normalform bis zu `CREATE`, `INSERT`, `SELECT`, `JOIN`, Aggregatfunktionen, Gruppierung und der Bewertung personalisierter Massendaten. Sieben Übungen mit Lösungen, Quizfragen, responsive ER-/Schema-Grafiken, SQL-Syntaxhervorhebung, zwölf Ich-kann-Ziele sowie Einbindung in Startseite, Lernlandkarte, Inhaltsverzeichnis, Glossar und Spickzettel ergänzt. Grundlage: Bildungsplan S. 15–16; ein separates offizielles BPE-6-Materialpaket lag lokal nicht vor. |
+| 2026-07-16 09:21 | 2.3 | Claude (Fable 5) | **Gesamtsichtung + Lesbarkeits-Optimierung:** (1) Öffentliche Markdown-Dateien (chapters, exercises, solutions, book.md, curriculum-map.md, README.md) von ASCII-Umschrift auf echte Umlaute konvertiert (wortlistenbasiert, Code/Dateinamen geschützt; „Quelle/Queue/zuerst“ etc. unangetastet) + Tippfehler „Ablaufe“→„Abläufe“. (2) Startseite: BPE-6-Lernweg-Block auf „du“ angeglichen (Seite war intern gemischt); BPE-5-/BPE-7-Karten verlinken jetzt auf die HTML-Kapitel statt auf rohe Markdown-Dateien. (3) BPE-6 Übung 2: Kardinalitäts-Lösung Lehrkraft–Kurs macht die Modellannahme explizit (n:m vs. 1:n). (4) **Lehrbuch-Typografie in style.css:** Fließtext auf `--lese-breite: 76ch` begrenzt (vorher ~108 Zeichen/Zeile, jetzt ~79), Tabellen/Code/Grafiken behalten volle Breite; deutsche Silbentrennung (`hyphens: auto`), `text-wrap: pretty/balance`, Zeilenhöhe 1.7 im Fließtext. (5) `lehrbuch-logo.png` von 2 MB/1254 px auf 75 KB/660 px komprimiert (Original in `tmp/lehrbuch-logo-original.png`), Cache-Buster am Hero-Logo ergänzt. Cache-Versionen überall auf `?v=2.3`. (6) **Sicherheit:** `tmp/` in `.gitignore` aufgenommen – der Ordner enthält Renderings des privaten Bildungsplan-PDFs und das Logo-Original und war bisher untracked (Gefahr bei `git add -A`). Browser-geprüft: 12 Seiten fehlerfrei, keine kaputten Links, kein Overflow (Desktop + 390 px), Kara-Simulator und Quiz funktionieren. Nicht committet – Push entscheidet Jakob. |
+| 2026-07-16 10:33 | 2.4 | Codex | **BPE 8 „Gesellschaftliche Aspekte“ vollständig ausgebaut:** eigenständige HTML-Lesefassung zu BPE 8.1–8.3 mit algorithmischem Einfluss, Informationsvorauswahl und Filterblase, Graphbegriffen, sozialem Netzwerk, gewichteter Wegsuche, Beurteilungsraster, drei Quizfragen sowie acht Übungen mit Lösungen. 15 Ich-kann-Ziele, Graphen-Spickzettel und Glossarbegriffe ergänzt; Startseite, Lernlandkarte, Inhaltsverzeichnis und Navigation vollständig verknüpft. Grundlage: Bildungsplan S. 18 und das lokale offizielle BPE-8-Paket mit drei Lernfortschritten. Cache-Version auf `2.4.1` vereinheitlicht, mobile Befehlsübersichten gegen Überbreite abgesichert und Markdown-, Projekt- sowie Memory-Dokumentation aktualisiert. |
 
 ---
 
 ## 5. Offene Punkte / To-do
 
-- [ ] **BPE 6 „Relationale Datenbanken“** als weitere Einheit im gleichen Stil (Kapitelstruktur: ER-Modell → Relationenmodell → SQL CREATE/INSERT → SELECT-Auswertungen → Chancen/Risiken Massendaten; Bildungsplan-Text liegt vor, S. 15–16 der PDF). Vorher klären, ob offizielle Materialien zu BPE 6 vorhanden sind. (Ggf. auch BPE 8 „Gesellschaftliche Aspekte“, S. 18.)
+- [ ] **BPE 1 bis BPE 4** schrittweise als vollständige HTML-Lesefassungen ausbauen; mit BPE 1 „Tabellenkalkulation“ beginnen.
 - [ ] Kapitel 1: ggf. kleine Weltbilder/Grafiken zu den Übungsaufgaben (Ausgangs-/Ziel-Welt), damit die Aufgaben ohne PythonKara-Datei eindeutig sind.
 - [ ] **Anrede vereinheitlichen:** Kapitel 1–6, Spickzettel, Checklisten nutzen „Sie“; die Codex-Seiten (Startseite, Inhaltsverzeichnis, Glossar) nutzen „du“. Jakob entscheiden lassen, dann konsequent umstellen.
 - [ ] Optional: Abschlussquiz pro Kapitel (5–8 Fragen) als Klassenarbeits-Simulation.
-- [ ] Bei neuen Seiten: Navigation (inzwischen 12 Einträge – bei weiteren Kapiteln über ein Dropdown „Kapitel“ nachdenken), Inhaltsverzeichnis und ggf. Checklisten mitpflegen.
+- [ ] Bei neuen Seiten: Navigation (inzwischen 13 Einträge – bei weiteren Kapiteln über ein Dropdown „Kapitel“ nachdenken), Inhaltsverzeichnis und ggf. Checklisten mitpflegen.
 
 ---
 
-## 6. Verifikation (Stand v2.1)
+## 6. Verifikation (Stand v2.4)
 
+- BPE-8-Check v2.4: alle 13 HTML-Seiten geparst; sämtliche lokalen
+  `href`-/`src`-Ziele und Sprungmarken vorhanden; Navigation und Cache-Version
+  `2.4.1` auf allen Seiten konsistent. JavaScript-Syntax und `git diff --check`
+  fehlerfrei.
+- BPE 8 im Browser auf 1440 × 900 und 390 × 844 geprüft: zwei responsive
+  Graphmodelle mit 13 Knoten, drei Quizfragen und acht Übungen rendern ohne
+  Seitenüberlauf. Quiz-Feedback, 15 Ich-kann-Ziele und Speicherung nach
+  Neuladen funktionieren; der Testhaken wurde anschließend zurückgesetzt.
+- Glossarblock `#graphbegriffe` mit zwölf Begriffen sowie Spickzettelblock
+  `#graphen` mobil geprüft. Befehls-Karten besitzen `min-width: 0`, damit auch
+  die SQL-Übersicht auf schmalen Displays innerhalb der Seite bleibt.
 - Alle Seiten laden ohne Konsolenfehler und ohne fehlgeschlagene Netzwerk-Requests (getestet über lokalen `http.server`).
 - Interaktiv getestet: Quiz-Feedback, Syntax-Highlighting, Checklisten-Speicherung (übersteht Neuladen), Kara-Simulator (Schritt/Abspielen/Zurücksetzen), Struktogramm-Rendering (einfach + verschachtelt), neue Kapitel 4–6 inkl. Quiz und Grafiken (Array-Zellen, Listen-/Stack-/Queue-Diagramme, SVG-Bäume).
 - Statischer Link-/Ankercheck: alle lokalen HTML-Ziele und Sprungmarken vorhanden.
@@ -209,7 +241,7 @@ Arbeitsordner und keine zweite kanonische Fassung mehr.
 Der technische Ordnername lautet `Lehrbuch`; der sichtbare Projekttitel lautet
 **Lehrbuch**. Die Markdown-Dateien in `chapters/` bilden die BPE-Hauptebene.
 Die HTML-Dateien sind die detaillierte Web-Lesefassung und enthalten derzeit
-die ausgebauten Unterkapitel zu BPE 5 und BPE 7. Bei einer späteren
+die ausgebauten Bereiche BPE 5 bis BPE 8. Bei einer späteren
 Konvertierung nach Word oder PDF wird aus diesen Rollen eine gemeinsame
 Ausgabe erzeugt, ohne Inhalte parallel neu zu schreiben.
 

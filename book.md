@@ -1,27 +1,27 @@
 # Lehrbuch
 
-Ein Fachbuch, das Schuelerinnen und Schueler beim Verstehen, Ueben und
+Ein Fachbuch, das Schülerinnen und Schüler beim Verstehen, Üben und
 Vertiefen von Informatik begleitet.
 
 ## Leitidee
 
-Dieses Lehrbuch soll nicht wie eine lose Sammlung von Arbeitsblaettern wirken,
-sondern wie ein zusammenhaengender Lernweg:
+Dieses Lehrbuch soll nicht wie eine lose Sammlung von Arbeitsblättern wirken,
+sondern wie ein zusammenhängender Lernweg:
 
-1. Ein neues Konzept wird anschaulich eingefuehrt.
-2. Ein kleines Beispiel zeigt, warum das Konzept nuetzlich ist.
+1. Ein neues Konzept wird anschaulich eingeführt.
+2. Ein kleines Beispiel zeigt, warum das Konzept nützlich ist.
 3. Der Python-Code bleibt kurz und lesbar.
 4. Struktogramme, Tabellen, Ablaufbilder oder Datenstruktur-Grafiken helfen
    beim Denken.
-5. Aufgaben fuehren vom Nachvollziehen zum eigenen Anwenden.
-6. Selbstchecks machen sichtbar, was schon sitzt und was noch Uebung braucht.
+5. Aufgaben führen vom Nachvollziehen zum eigenen Anwenden.
+6. Selbstchecks machen sichtbar, was schon sitzt und was noch Übung braucht.
 
 ## Geplanter Aufbau
 
 ### Teil 0: Orientierung
 
 - `chapters/00-vorwort.md`: Wie dieses Buch funktioniert
-- Informatik am Beruflichen Gymnasium im Ueberblick
+- Informatik am Beruflichen Gymnasium im Überblick
 
 ### Teil I: Eingangsklasse
 
@@ -42,16 +42,16 @@ sondern wie ein zusammenhaengender Lernweg:
 
 ### Teil IV: Vertiefung und Abiturtraining
 
-- gemischte Uebungsaufgaben
+- gemischte Übungsaufgaben
 - typische Klausurformate
 - Schreibtischtests
 - kleine Projekte
 - Glossar und Python-Referenz
 
-## Fokus der ersten Ausbaustufe
+## Stand der ersten Ausbaustufe
 
-Die Buchgliederung laeuft bewusst von BPE 1 bis BPE 8. Ausgebaut werden zuerst
-die Kapitel fuer J1 und J2:
+Die Buchgliederung läuft bewusst von BPE 1 bis BPE 8. Die Kapitel für J1 und
+J2 sind als HTML-Lesefassung ausgebaut:
 
 1. BPE 5: Programmierung
 2. BPE 6: Relationale Datenbanken
@@ -59,9 +59,12 @@ die Kapitel fuer J1 und J2:
 4. BPE 8: Gesellschaftliche Aspekte und Graphen
 
 Damit passt das Lehrbuch besonders gut zur J1 und J2. Die J2 ist die
-Abschlussklasse vor dem Abitur; daher sollen die Kapitel dort auch staerker auf
-Strukturieren, Begruenden, Vergleichen und Pruefungssicherheit ausgerichtet
+Abschlussklasse vor dem Abitur; daher sollen die Kapitel dort auch stärker auf
+Strukturieren, Begründen, Vergleichen und Prüfungssicherheit ausgerichtet
 sein.
+
+Die nächste Ausbaustufe überführt BPE 1 bis BPE 4 aus der Übersicht in
+vollständige Lesekapitel und ergänzt gemischtes Abiturtraining.
 
 ## Quellen
 
@@ -69,11 +72,11 @@ Fachliche Grundlage ist der lokale Bildungsplan:
 
 `D:\Google Drive\Codex\PythonLab\resources\29-TB02-Inhalt-Band 2a-AG-3 Informatik.pdf`
 
-Die PDF wird als Referenz genutzt. Originalmaterialien und Loesungsdateien aus
-`resources/` duerfen nicht ungeprueft in eine oeffentliche Fassung uebernommen
+Die PDF wird als Referenz genutzt. Originalmaterialien und Lösungsdateien aus
+`resources/` dürfen nicht ungeprüft in eine öffentliche Fassung übernommen
 werden.
 
 Weitere Inspiration kann aus den offiziellen Materialien des
-Landesbildungsservers Baden-Wuerttemberg fuer Informatik an nichtgewerblichen
+Landesbildungsservers Baden-Württemberg für Informatik an nichtgewerblichen
 beruflichen Schulen gewonnen werden. Dabei gilt: Inhalte didaktisch neu
 aufbereiten und Quellen sauber dokumentieren.
