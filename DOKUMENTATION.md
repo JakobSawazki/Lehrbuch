@@ -153,7 +153,7 @@ Neue Zeilen tragen das Datum **mit Uhrzeit** im Format `JJJJ-MM-TT HH:MM`
 | 07.07.2026 | 1.9 | Codex | Footer der Workbook-Startseite aufgeräumt: BPE-/Quellenhinweise stehen nun in einem kleinen Info-Button unten links (`details.footer-info`), rechts steht `Designed by Sawazki Electronics` mit Link auf die Sawazki-Electronics-Homepage. Startseite lädt `assets/style.css?v=1.9` und `assets/workbook.js?v=1.9`. |
 | 07.07.2026 | 2.0 | Codex | Lehrbuch aus PythonLab herausgeloest und als eigenstaendiges Projekt nach `D:\Google Drive\Codex\Lehrbuch` verschoben. Markdown-Quelle konsequent nach BPE 1 bis BPE 8 strukturiert (`chapters/bpe-1-...` bis `bpe-8-...`). HTML-Startseite um BPE-1-bis-BPE-8-Uebersicht erweitert, Navigation auf BPE5/BPE7-Kapitelbezeichnungen angepasst, Ruecklink zeigt nun auf `../PythonLab/`. PythonLab verlinkt ueber den Reiter `Lehrbuch` auf `../Lehrbuch/`. |
 | 2026-07-16 08:14 | 2.1 | Codex | Standalone-Projekt `PythonWorkbook` vollständig mit dem Lehrbuch verglichen: sämtliche Inhalte waren bereits enthalten, die Lehrbuchfassungen waren die neueren bzw. erweiterten Varianten. Das Lehrbuch als einzige Quelle festgelegt, Rollen von BPE-Markdown und HTML-Unterkapiteln dokumentiert, Assets von `workbook-*` auf `lehrbuch-*` umbenannt, Cache-Versionen auf `2.1` vereinheitlicht und den veralteten Doppelordner nach der Verifikation entfernt. |
-| 2026-07-16 08:26 | 2.1 | Codex | Eigenständiges öffentliches GitHub-Repository und GitHub-Pages-Adresse für das konsolidierte Lehrbuch vorbereitet. Private Memory-, Ideen-, Ressourcen- und Implementierungsdateien bleiben per `.gitignore` ausgeschlossen. |
+| 2026-07-16 08:26 | 2.1 | Codex | Eigenständiges öffentliches GitHub-Repository `JakobSawazki/Lehrbuch` erstellt und erfolgreich über GitHub Pages veröffentlicht. Private Memory-, Ideen-, Ressourcen- und Implementierungsdateien bleiben per `.gitignore` ausgeschlossen. |
 
 ---
 
@@ -183,6 +183,10 @@ Neue Zeilen tragen das Datum **mit Uhrzeit** im Format `JJJJ-MM-TT HH:MM`
 - Nach der Asset-Umbenennung wurden alle lokalen `href`-/`src`-Ziele, alle
   HTML-Sprungmarken sowie Startseite, Glossar, Checklisten und Kara-Simulator
   erneut geprüft.
+- Live-Check am 2026-07-16: Pages-Build erfolgreich; der sichtbare
+  PythonLab-Reiter `Lehrbuch` öffnet `https://jakobsawazki.github.io/Lehrbuch/`.
+  Titel, Logo und `lehrbuch.js` laden dort ohne Konsolenfehler oder
+  horizontalen Seitenüberlauf.
 
 ---
 
