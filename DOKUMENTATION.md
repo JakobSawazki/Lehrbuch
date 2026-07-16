@@ -201,6 +201,9 @@ Neue Zeilen tragen das Datum **mit Uhrzeit** im Format `JJJJ-MM-TT HH:MM`
 - Glossarblock `#graphbegriffe` mit zwölf Begriffen sowie Spickzettelblock
   `#graphen` mobil geprüft. Befehls-Karten besitzen `min-width: 0`, damit auch
   die SQL-Übersicht auf schmalen Displays innerhalb der Seite bleibt.
+- Veröffentlichung v2.4: Commit `3fc3b07` auf `main`; GitHub-Pages-Lauf
+  `29484904489` erfolgreich. Die öffentliche BPE-8-Seite und das Stylesheet
+  `2.4.1` liefern Status 200 und enthalten die erwarteten Quiz- und Graphbausteine.
 - Alle Seiten laden ohne Konsolenfehler und ohne fehlgeschlagene Netzwerk-Requests (getestet über lokalen `http.server`).
 - Interaktiv getestet: Quiz-Feedback, Syntax-Highlighting, Checklisten-Speicherung (übersteht Neuladen), Kara-Simulator (Schritt/Abspielen/Zurücksetzen), Struktogramm-Rendering (einfach + verschachtelt), neue Kapitel 4–6 inkl. Quiz und Grafiken (Array-Zellen, Listen-/Stack-/Queue-Diagramme, SVG-Bäume).
 - Statischer Link-/Ankercheck: alle lokalen HTML-Ziele und Sprungmarken vorhanden.
