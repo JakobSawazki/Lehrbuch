@@ -33,11 +33,12 @@ lautet **Lehrbuch**.
 
 ## Einstieg für Autorinnen und Autoren
 
-1. `book.md` lesen.
-2. `curriculum-map.md` lesen.
-3. Danach das passende Kapitel in `chapters/` bearbeiten.
-4. Neue Aufgaben in `exercises/` sammeln.
-5. Lösungen nur bewusst und mit Blick auf die Veröffentlichung in
+1. Bei einem Geräte- oder Agentenwechsel `CODEX-UEBERGABE.md` lesen.
+2. `book.md` lesen.
+3. `curriculum-map.md` lesen.
+4. Danach das passende Kapitel in `chapters/` bearbeiten.
+5. Neue Aufgaben in `exercises/` sammeln.
+6. Lösungen nur bewusst und mit Blick auf die Veröffentlichung in
    `solutions/` ergänzen.
 
 ## Kapitelstruktur
