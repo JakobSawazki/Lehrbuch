@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+memory/
+**/memory/
+.idea/
+.vscode/
+.claude/
+*.log
+node_modules/
+resources/
+implementations/
+feedback.txt
+ideas.txt
